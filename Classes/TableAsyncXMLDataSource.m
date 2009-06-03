@@ -9,22 +9,7 @@
 @synthesize results, currentResult, currentProperty;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewDataSource
-
-- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage
-{
-    // send the request to Yahoo's image search service
-    // (note that we are requesting XML output)
-    NSString *url = @"http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=beach&output=xml";
-    TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
-    request.cachePolicy = cachePolicy;
-    request.response = [[[TTURLDataResponse alloc] init] autorelease];
-    request.httpMethod = @"GET";
-    [request send];
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLRequestDelegate
+#pragma mark TTURLRequestDelegate
 
 - (void)requestDidFinishLoad:(TTURLRequest*)request
 {
@@ -63,7 +48,7 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-// NSXMLParserDelegate
+#pragma mark NSXMLParserDelegate
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
@@ -134,6 +119,9 @@
 {
     [self dataSourceDidFailLoadWithError:parseError];
 }
+
+//////////////////////////////////////////////////////////////////////////
+#pragma mark -
 
 - (void)dealloc
 {

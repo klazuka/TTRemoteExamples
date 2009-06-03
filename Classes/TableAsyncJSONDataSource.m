@@ -8,22 +8,7 @@
 @implementation TableAsyncJSONDataSource
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-// TTTableViewDataSource
-
-- (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage
-{
-    // send the request to Yahoo's image search service
-    // (note that we are requesting JSON output)
-    static NSString *url = @"http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=lolcats&output=json";
-    TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
-    request.cachePolicy = cachePolicy;
-    request.response = [[[TTURLDataResponse alloc] init] autorelease];
-    request.httpMethod = @"GET";
-    [request send];
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// TTURLRequestDelegate
+#pragma mark TTURLRequestDelegate
 
 - (void)requestDidStartLoad:(TTURLRequest*)request
 {
@@ -43,9 +28,6 @@
     // that we're actually interested in.
     NSDictionary *resultSet = [json objectForKey:@"ResultSet"];
     NSArray *results = [resultSet objectForKey:@"Result"];
-    
-    // remove any previous items
-    [self.items removeAllObjects];
     
     // now wrap the results from the server into an object
     // that Three20's tableview system can natively display
