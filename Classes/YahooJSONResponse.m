@@ -1,24 +1,15 @@
 //
-//  TableAsyncJSONDataSource.m
+//  YahooJSONResponse.m
 //
 
-#import "TableAsyncJSONDataSource.h"
+#import "YahooJSONResponse.h"
 #import "JSON/JSON.h"
 
-@implementation TableAsyncJSONDataSource
+@implementation YahooJSONResponse
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark TTURLRequestDelegate
-
-- (void)requestDidStartLoad:(TTURLRequest*)request
+- (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
-    [self dataSourceDidStartLoad];
-}
-
-- (void)requestDidFinishLoad:(TTURLRequest*)request
-{
-    TTURLDataResponse *response = request.response;
-    NSString *responseBody = [[NSString alloc] initWithData:response.data encoding:NSUTF8StringEncoding];
+    NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     // parse the JSON data that we retrieved from the server
     NSDictionary *json = [responseBody JSONValue];
@@ -40,19 +31,7 @@
                                 defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]] autorelease]];
     }
     
-    [self dataSourceDidFinishLoad];
+    return nil;
 }
-
-- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error
-{
-    [self dataSourceDidFailLoadWithError:error];
-}
-
-- (void)requestDidCancelLoad:(TTURLRequest*)request
-{
-    [self dataSourceDidCancelLoad];
-}
-
-
 
 @end

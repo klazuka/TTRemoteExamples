@@ -1,23 +1,20 @@
 //
-//  TableAsyncXMLDataSource.m
+//  YahooXMLResponse.m
 //
 
-#import "TableAsyncXMLDataSource.h"
+#import "YahooXMLResponse.h"
 
-@implementation TableAsyncXMLDataSource
+@implementation YahooXMLResponse
 
 @synthesize results, currentResult, currentProperty;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark TTURLRequestDelegate
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark TTURLResponse
 
-- (void)requestDidFinishLoad:(TTURLRequest*)request
+- (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
-    TTURLDataResponse *response = request.response;
-    
-    // configure the parse to parse the XML data that we received
-    // in the response from the server.
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:response.data];
+    // configure the parser to parse the XML data that we received from the server.
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
     [parser setDelegate:self];
     [parser setShouldProcessNamespaces:NO];
     [parser setShouldReportNamespacePrefixes:NO];
@@ -30,21 +27,11 @@
     
     NSError *parseError = [parser parserError];
     if (parseError) {
-        NSLog(@"TableAsyncXMLDataSource - parse error %@", parseError);
-        [self dataSourceDidFailLoadWithError:parseError];
+        NSLog(@"YahooXMLResponse - parse error %@", parseError);
     }
     
     [parser release];
-}
-
-- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error
-{
-    [self dataSourceDidFailLoadWithError:error];
-}
-
-- (void)requestDidCancelLoad:(TTURLRequest*)request
-{
-    [self dataSourceDidCancelLoad];
+    return parseError;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +40,6 @@
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
     self.results = [NSMutableArray array];
-    [self dataSourceDidStartLoad];
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
@@ -67,8 +53,6 @@
                                 image:[result objectForKey:@"Url"]
                                 defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]] autorelease]];
     }
-    
-    [self dataSourceDidFinishLoad];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -117,7 +101,7 @@
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    [self dataSourceDidFailLoadWithError:parseError];
+    NSLog(@"YahooXMLResponse: a parse error occurred: %@", parseError);
 }
 
 //////////////////////////////////////////////////////////////////////////

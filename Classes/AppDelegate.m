@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "TableAsyncViewController.h"
+#import "YahooViewController.h"
 
 @implementation AppDelegate
 
@@ -16,7 +16,7 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    UIViewController *controller = [[[TableAsyncViewController alloc] init] autorelease];
+    UIViewController *controller = [[[YahooViewController alloc] init] autorelease];
     
     navController = [[UINavigationController alloc] 
                      initWithRootViewController:controller];

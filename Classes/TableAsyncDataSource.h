@@ -5,6 +5,8 @@
 #import <Foundation/Foundation.h>
 #import "Three20/Three20.h"
 
+@class TableItemsResponse;
+
 //
 //      TableAsyncDataSource
 //
@@ -32,7 +34,9 @@
 //
 @interface TableAsyncDataSource : TTListDataSource <TTURLRequestDelegate>
 {
-    NSString *query;
+    NSString *url;
+    NSMutableDictionary *urlQueryParameters;
+    TableItemsResponse *responseProcessor;
     
     // TTLoadable support
     NSDate *lastLoadedTime;
@@ -40,8 +44,8 @@
     BOOL isLoadingMore;
 }
 
-@property (nonatomic, retain) NSString *query;  // the search query to send to Yahoo
-
-+ (id)dataSourceForFormat:(NSString *)format;   // factory method to construct data sources based on the type of the response from the web service. Currently, |format| can either be "xml" or "json"
+@property (nonatomic, retain) NSString *url;                                // just the url host and path (e.g. http://apple.com/iphone), but *not* the query parameters
+@property (nonatomic, retain) NSMutableDictionary *urlQueryParameters;      // mappings to be used in the query part of the URL "?foo=bar&woot=baz"
+@property (nonatomic, retain) TableItemsResponse *responseProcessor;        // an object that will process the HTTP response into a list of items suitable for display in a TTListDataSource/TableView combo.
 
 @end

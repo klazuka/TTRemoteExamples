@@ -1,12 +1,12 @@
 //
-//  TableAsyncViewController.h
+//  YahooViewController.h
 //
 
 #import <UIKit/UIKit.h>
 #import "Three20/Three20.h"
 
 //
-//      TableAsyncViewController
+//      YahooViewController
 //      ------------------------
 //
 //  This view controller manages a UITableView that will
@@ -16,9 +16,8 @@
 //  query the Yahoo service, fetch the results and parse it 
 //  into a format that the tableview can display.
 //
-@interface TableAsyncViewController : TTTableViewController <UISearchBarDelegate>
+@interface YahooViewController : TTTableViewController <UISearchBarDelegate>
 {
-//    UISearchBar *searchBar;
 }
 
 @end

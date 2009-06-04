@@ -3,89 +3,74 @@
 //
 
 #import "TableAsyncDataSource.h"
-#import "TableAsyncJSONDataSource.h"
-#import "TableAsyncXMLDataSource.h"
+#import "TableItemsResponse.h"
 #import "GTMNSDictionary+URLArguments.h"
-
-static const int kYahooResultsPerQuery = 16;
-static const int kYahooMaxNumPhotos = 1000;
-
-static const NSDictionary *kResponseFormatToClassMapping;   // maps keys (NSString - string response format types to values Class 
 
 @implementation TableAsyncDataSource
 
-@synthesize query;
+@synthesize url;
+@synthesize urlQueryParameters;
+@synthesize responseProcessor;
 
-+ (void)initialize
-{
-    kResponseFormatToClassMapping = [[NSDictionary alloc] 
-                                     initWithObjectsAndKeys:
-                                        [TableAsyncXMLDataSource class], @"xml", 
-                                        [TableAsyncJSONDataSource class], @"json",
-                                        nil];
-}
-
-+ (id)dataSourceForFormat:(NSString *)format
-{
-    Class klass = [kResponseFormatToClassMapping objectForKey:[format lowercaseString]];
-    NSAssert1(klass != nil, @"TableAsyncDataSource dataSourceForFormat: %@ is an unknown format", format);
-    
-    return [[[klass alloc] init] autorelease];
-}
-
-- (void)setQuery:(NSString *)theQuery
-{
-    if (query != theQuery) {
-        // set the property
-        [query release];
-        query = [theQuery retain];
-        
-        // remove any photos from a previous query
-        [self.items removeAllObjects];
-        
-        // ensure that the PhotoSource is now marked as "outdated"
-        [lastLoadedTime release];
-        lastLoadedTime = [[NSDate distantPast] retain];
-    }
-}
+// TODO store lastLoadedTime under a dictionary where the keys are the fullUrl
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark TTTableViewDataSource
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage
 {
+    NSLog(@"load:nextPage:%@ sent to %@", nextPage ? @"YES" : @"NO", self);
+    /*
     if (!query)
         return;
+     */
     
+    /*
+     *    Maybe instead of doing this, I should follow the loadPhotosFromIndex:toIndex:cachePolicy: model
+     *    In order to support automatic "load more results"?
+     *
     // calculate the offset into the recordset to be retrieved
     int start = nextPage ? [self.items count] + 1 : 1;
+     */
     
-    // lookup this data source's desired output format to receive from the Yahoo web service.
-    NSArray *formats = [kResponseFormatToClassMapping allKeysForObject:[self class]];
-    NSAssert([formats count] == 1, @"TableAsyncDataSource: ERROR the response format dictionary must be a 1-to-1 mapping from format types to classes."); 
-    NSString *outputFormat = [formats objectAtIndex:0];
-    NSAssert(outputFormat, @"TableAsyncDataSource: ERROR could not determine the web service's desired output format.");
+    // send the request to the web service
+    NSString *fullUrl = [NSString stringWithFormat:
+                     @"%@?%@",
+                     self.url,
+                     [self.urlQueryParameters gtm_httpArgumentsString]];
     
-    // arguments to the Yahoo Image Search API
-    NSDictionary *args = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"YahooDemo", @"appid",
-                          query, @"query",
-                          [NSString stringWithFormat:@"%d", kYahooResultsPerQuery], @"results",
-                          [NSString stringWithFormat:@"%d", start], @"start",
-                          outputFormat, @"output",
-                          nil];
-    
-    // send the request to Yahoo
-    NSString *url = [NSString stringWithFormat:
-                     @"http://search.yahooapis.com/ImageSearchService/V1/imageSearch?%@",
-                     [args gtm_httpArgumentsString]];
-    
-    TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
+    TTURLRequest *request = [TTURLRequest requestWithURL:fullUrl delegate:self];
     request.cachePolicy = cachePolicy;
-    request.response = [[[TTURLDataResponse alloc] init] autorelease];
+    request.response = self.responseProcessor;
     request.httpMethod = @"GET";
     [request send];
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark TTURLRequestDelegate
+
+- (void)requestDidStartLoad:(TTURLRequest*)request
+{
+    [self dataSourceDidStartLoad];
+}
+
+- (void)requestDidFinishLoad:(TTURLRequest*)request
+{
+    TableItemsResponse *response = request.response;
+    [self.items addObjectsFromArray:response.items];
+    [self dataSourceDidFinishLoad];
+}
+
+- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error
+{
+    [self dataSourceDidFailLoadWithError:error];
+}
+
+- (void)requestDidCancelLoad:(TTURLRequest*)request
+{
+    [self dataSourceDidCancelLoad];
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark TTLoadable
@@ -108,6 +93,24 @@ static const NSDictionary *kResponseFormatToClassMapping;   // maps keys (NSStri
 - (BOOL)isLoaded
 {
     return lastLoadedTime != nil;
+}
+
+- (void)invalidate:(BOOL)erase
+{
+    if (erase) {
+        // remove any items from a previous query
+        [self.items removeAllObjects];
+        [[self.responseProcessor items] removeAllObjects];
+    }
+    
+    // ensure that the data source is now marked as "outdated"
+    [lastLoadedTime release];
+    lastLoadedTime = [[NSDate distantPast] retain];
+}
+
+- (void)cancel
+{
+    NSLog(@"TableAsyncDataSource: asked to cancel, but this feature is not implemented.");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,8 +150,21 @@ static const NSDictionary *kResponseFormatToClassMapping;   // maps keys (NSStri
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ url=%@\n\turlQueryParameters=%@\n\tresponseProcessor=%@\n\tnumSecondsSinceLastLoad=%f",
+            [super description],
+            self.url,
+            self.urlQueryParameters,
+            self.responseProcessor,
+            -1*[lastLoadedTime timeIntervalSinceNow]];
+}
+
 - (void) dealloc
 {
+    [url release];
+    [urlQueryParameters release];
+    [responseProcessor release];
     [lastLoadedTime release];
     [super dealloc];
 }

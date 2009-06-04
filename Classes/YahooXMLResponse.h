@@ -1,11 +1,11 @@
 //
-//  TableAsyncXMLDataSource.h
+//  YahooXMLResponse.h
 //
 
 #import <Foundation/Foundation.h>
-#import "TableAsyncDataSource.h"
+#import "TableItemsResponse.h"
 
-@interface TableAsyncXMLDataSource : TableAsyncDataSource
+@interface YahooXMLResponse : TableItemsResponse
 {
     NSMutableArray *results;               // list of Yahoosearch image result objects
     NSMutableDictionary *currentResult;    // current Yahoosearch image result
