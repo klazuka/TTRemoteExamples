@@ -37,6 +37,7 @@
 {
     WebService *webService;
     BOOL isActive;
+    NSInteger numberOfItemsInServerRecordset;
     
     // TTLoadable support
     NSDate *lastLoadedTime;

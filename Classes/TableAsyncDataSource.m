@@ -15,8 +15,14 @@
 {
     if ((self = [super init])) {
         isActive = YES;
+        numberOfItemsInServerRecordset = 0;
     }
     return self;
+}
+
+- (BOOL)hasMoreToLoad
+{
+    return [self.items count] < numberOfItemsInServerRecordset;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +30,6 @@
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage
 {
-    NSLog(@"load:nextPage:%@ sent to %@", nextPage ? @"YES" : @"NO", self);
     if (!isActive) {
         NSLog(@"TableAsyncDataSource is not active so I will ignore this request to load:nextPage:");
         return;
@@ -53,6 +58,8 @@
 {
     TableItemsResponse *response = request.response;
     [self.items addObjectsFromArray:response.items];
+    numberOfItemsInServerRecordset = response.numberOfItemsInServerRecordset;
+    NSLog(@"Retrieved %d results from a recordset totaling %d records", [self.items count], numberOfItemsInServerRecordset);
     [self dataSourceDidFinishLoad];
 }
 

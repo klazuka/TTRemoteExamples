@@ -14,8 +14,8 @@ static const int kYahooMaxNumPhotos = 1000;
 
 //  Un-comment the appropriate line to switch between
 //  the XML data source and the JSON data source implementation.
-//#define YAHOO_OUTPUT_FORMAT @"json"
-#define YAHOO_OUTPUT_FORMAT @"xml"
+#define YAHOO_OUTPUT_FORMAT @"json"
+//#define YAHOO_OUTPUT_FORMAT @"xml"
 
 // maps keys (NSString - string response format) to values (Class - response format implementations)
 static const NSDictionary *kResponseFormatToClassMapping;

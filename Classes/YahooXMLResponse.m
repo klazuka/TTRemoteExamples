@@ -60,6 +60,11 @@
     if (qName)
         elementName = qName;
     
+    if ([elementName isEqualToString:@"ResultSet"]) {
+        self.numberOfItemsInServerRecordset = [[attributeDict valueForKey:@"totalResultsAvailable"] intValue];
+        return;
+    }
+    
     if ([elementName isEqualToString:@"Result"]) {
         self.currentResult = [NSMutableDictionary dictionary];
         return;

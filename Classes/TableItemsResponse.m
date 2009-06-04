@@ -11,11 +11,13 @@
 @implementation TableItemsResponse
 
 @synthesize items;
+@synthesize numberOfItemsInServerRecordset;
 
 - (id)init
 {
     if ((self = [super init])) {
         items = [[NSMutableArray alloc] init];
+        numberOfItemsInServerRecordset = 0;
     }
     return self;
 }

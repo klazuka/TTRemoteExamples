@@ -53,6 +53,7 @@
         [request.parameters addEntriesFromDictionary:self.parameters];
 
     // dispatch the request
+    NSLog(@"WebService sending request fromIndex:%d to %@ using responseProcessor:%@", fromIndex, fullUrl, self.responseProcessor);
     [request send];    
 }
 

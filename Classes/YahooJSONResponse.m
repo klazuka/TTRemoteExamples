@@ -31,6 +31,8 @@
                                 defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]] autorelease]];
     }
     
+    self.numberOfItemsInServerRecordset = [[resultSet objectForKey:@"totalResultsAvailable"] intValue];
+    
     return nil;
 }
 
