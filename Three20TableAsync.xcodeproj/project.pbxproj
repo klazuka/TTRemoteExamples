@@ -134,8 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
-				531976A10FC8302500657A15 /* Three20.xcodeproj */,
-				531976900FC8301B00657A15 /* Three20.bundle */,
 				5319764D0FC82F7900657A15 /* Support */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -148,6 +146,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				531976A10FC8302500657A15 /* Three20.xcodeproj */,
+				531976900FC8301B00657A15 /* Three20.bundle */,
 				32CA4F630368D1EE00C91783 /* Three20TableAsync_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);

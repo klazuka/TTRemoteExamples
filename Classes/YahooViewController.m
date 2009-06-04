@@ -93,7 +93,7 @@ static const NSDictionary *kResponseFormatToClassMapping;
     return [UIImage imageNamed:@"Three20.bundle/images/error.png"];
 }
 
-////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 #pragma mark UISearchBarDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -101,9 +101,9 @@ static const NSDictionary *kResponseFormatToClassMapping;
     [searchBar resignFirstResponder];
     TableAsyncDataSource *myDataSource = (TableAsyncDataSource*)self.dataSource;
     [myDataSource.urlQueryParameters setObject:[searchBar text] forKey:@"query"];
-    myDataSource.isActive = YES;
-    [self.dataSource invalidate:YES];   // reset lastLoadedTime and clear out the list of items
-    [self.dataSource load:TTURLRequestCachePolicyAny nextPage:NO];
+    [myDataSource setIsActive:YES];     // ensure that the data source is enabled since now that the search query has been specified.
+    [myDataSource invalidate:YES];      // reset lastLoadedTime and clear out the list of items
+    [myDataSource load:TTURLRequestCachePolicyAny nextPage:NO];
 }
 
 @end
