@@ -29,6 +29,7 @@
 		53F0E6760FD717F200523DB2 /* YahooJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */; };
 		53F0E6770FD717F200523DB2 /* YahooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6730FD717F200523DB2 /* YahooViewController.m */; };
 		53F0E6780FD717F200523DB2 /* YahooXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */; };
+		53F0E7AA0FD8522B00523DB2 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E7A90FD8522B00523DB2 /* WebService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		53F0E6730FD717F200523DB2 /* YahooViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooViewController.m; sourceTree = "<group>"; };
 		53F0E6740FD717F200523DB2 /* YahooXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooXMLResponse.h; sourceTree = "<group>"; };
 		53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooXMLResponse.m; sourceTree = "<group>"; };
+		53F0E7A80FD8522B00523DB2 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		53F0E7A90FD8522B00523DB2 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Three20TableAsync-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Three20TableAsync-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +116,7 @@
 			children = (
 				5319764C0FC82EF000657A15 /* .h */,
 				531976430FC82E7F00657A15 /* TableAsyncDataSource.m */,
+				53F0E7A90FD8522B00523DB2 /* WebService.m */,
 				53F0E6730FD717F200523DB2 /* YahooViewController.m */,
 				53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */,
 				53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */,
@@ -177,6 +181,7 @@
 		5319764C0FC82EF000657A15 /* .h */ = {
 			isa = PBXGroup;
 			children = (
+				53F0E7A80FD8522B00523DB2 /* WebService.h */,
 				53F0E6720FD717F200523DB2 /* YahooViewController.h */,
 				53F0E6700FD717F200523DB2 /* YahooJSONResponse.h */,
 				53F0E6740FD717F200523DB2 /* YahooXMLResponse.h */,
@@ -322,6 +327,7 @@
 				53F0E6760FD717F200523DB2 /* YahooJSONResponse.m in Sources */,
 				53F0E6770FD717F200523DB2 /* YahooViewController.m in Sources */,
 				53F0E6780FD717F200523DB2 /* YahooXMLResponse.m in Sources */,
+				53F0E7AA0FD8522B00523DB2 /* WebService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

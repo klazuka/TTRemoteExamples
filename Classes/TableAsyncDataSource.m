@@ -4,16 +4,12 @@
 
 #import "TableAsyncDataSource.h"
 #import "TableItemsResponse.h"
-#import "GTMNSDictionary+URLArguments.h"
+#import "WebService.h"
 
 @implementation TableAsyncDataSource
 
-@synthesize url;
-@synthesize urlQueryParameters;
-@synthesize responseProcessor;
+@synthesize webService;
 @synthesize isActive;
-
-// TODO store lastLoadedTime under a dictionary where the keys are the fullUrl
 
 - (id)init
 {
@@ -22,13 +18,6 @@
     }
     return self;
 }
-
-/*
-- (void)loadPhotosFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex cachePolicy:(TTURLRequestCachePolicy)cachePolicy
-{
-    
-}
- */
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark TTTableViewDataSource
@@ -40,26 +29,16 @@
         NSLog(@"TableAsyncDataSource is not active so I will ignore this request to load:nextPage:");
         return;
     }
+
+    NSAssert(self.webService, @"TableAsyncDataSouce cannot load:nextPage: until the webService property is set to a useful value.");
     
-    /*
-     *    Maybe instead of doing this, I should follow the loadPhotosFromIndex:toIndex:cachePolicy: model
-     *    In order to support automatic "load more results"?
-     *
     // calculate the offset into the recordset to be retrieved
-    int start = nextPage ? [self.items count] + 1 : 1;
-     */
+    NSInteger start = nextPage ? [self.items count] + 1 : 1;
     
-    // send the request to the web service
-    NSString *fullUrl = [NSString stringWithFormat:
-                     @"%@?%@",
-                     self.url,
-                     [self.urlQueryParameters gtm_httpArgumentsString]];
+    // send the asynchronous request to the web service
+    [self.webService requestItemsFromIndex:start cachePolicy:cachePolicy delegate:self];
     
-    TTURLRequest *request = [TTURLRequest requestWithURL:fullUrl delegate:self];
-    request.cachePolicy = cachePolicy;
-    request.response = self.responseProcessor;
-    request.httpMethod = @"GET";
-    [request send];
+    isLoadingMore = start > 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,7 +95,8 @@
     if (erase) {
         // remove any items from a previous query
         [self.items removeAllObjects];
-        [[self.responseProcessor items] removeAllObjects];
+        // TODO find a better way to clear the items in the WebService's responseProcessor
+        [[self.webService.responseProcessor items] removeAllObjects];
     }
     
     // ensure that the data source is now marked as "outdated"
@@ -168,19 +148,15 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ url=%@\nurlQueryParameters=%@\nresponseProcessor=%@\nnumSecondsSinceLastLoad=%.1f",
+    return [NSString stringWithFormat:@"%@ webService=%@\nnumSecondsSinceLastLoad=%.1f",
             [super description],
-            self.url,
-            self.urlQueryParameters,
-            self.responseProcessor,
+            self.webService,
             -1*[lastLoadedTime timeIntervalSinceNow]];
 }
 
 - (void) dealloc
 {
-    [url release];
-    [urlQueryParameters release];
-    [responseProcessor release];
+    [webService release];
     [lastLoadedTime release];
     [super dealloc];
 }
