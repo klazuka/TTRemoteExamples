@@ -37,6 +37,7 @@
     NSString *url;
     NSMutableDictionary *urlQueryParameters;
     TableItemsResponse *responseProcessor;
+    BOOL isActive;
     
     // TTLoadable support
     NSDate *lastLoadedTime;
@@ -47,5 +48,6 @@
 @property (nonatomic, retain) NSString *url;                                // just the url host and path (e.g. http://apple.com/iphone), but *not* the query parameters
 @property (nonatomic, retain) NSMutableDictionary *urlQueryParameters;      // mappings to be used in the query part of the URL "?foo=bar&woot=baz"
 @property (nonatomic, retain) TableItemsResponse *responseProcessor;        // an object that will process the HTTP response into a list of items suitable for display in a TTListDataSource/TableView combo.
+@property (nonatomic, assign) BOOL isActive;                                // defaults to YES. When set to NO, the load:nextPage: method will do nothing. The idea is that sometimes you don't have the datasource entirely configured before its tableview is displayed. In these cases, set isActive to NO at instantiation, and then set it to YES once it is fully configured.
 
 @end

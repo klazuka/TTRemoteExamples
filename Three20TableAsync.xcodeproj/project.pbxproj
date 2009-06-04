@@ -112,11 +112,11 @@
 			isa = PBXGroup;
 			children = (
 				5319764C0FC82EF000657A15 /* .h */,
+				531976430FC82E7F00657A15 /* TableAsyncDataSource.m */,
 				53F0E6730FD717F200523DB2 /* YahooViewController.m */,
+				53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */,
 				53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */,
 				53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */,
-				53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */,
-				531976430FC82E7F00657A15 /* TableAsyncDataSource.m */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
 			path = Classes;

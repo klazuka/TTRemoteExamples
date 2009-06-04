@@ -47,13 +47,16 @@ static const NSDictionary *kResponseFormatToClassMapping;
     // response processor, depending on how the YAHOO_OUTPUT_FORMAT symbol is defined.
     TableAsyncDataSource *myDataSource = [[[TableAsyncDataSource alloc] init] autorelease];
     
+    myDataSource.isActive = NO; // since we don't know the search query terms yet, disable the datasource.
+    
     // the host and path of the web service
     myDataSource.url = @"http://search.yahooapis.com/ImageSearchService/V1/imageSearch";
     
-    // arguments to be appended to the URL (or, in the future, the HTTP body once the data source supports POST method).
+    // arguments to be appended to the URL (or, TODO in the future, the HTTP body once the data source supports POST method).
+    // notice that the Yahoo "query" parameter is not specified here because the user has not specified the search terms yet.
+    // this argument/key will be set to the appropriate value as soon as the user presses the search button.
     myDataSource.urlQueryParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        @"YahooDemo", @"appid",
-                                       @"super mario", @"query",
                                        [NSString stringWithFormat:@"%d", kYahooResultsPerQuery], @"results",
                                        YAHOO_OUTPUT_FORMAT, @"output",
                                        nil];
@@ -98,6 +101,7 @@ static const NSDictionary *kResponseFormatToClassMapping;
     [searchBar resignFirstResponder];
     TableAsyncDataSource *myDataSource = (TableAsyncDataSource*)self.dataSource;
     [myDataSource.urlQueryParameters setObject:[searchBar text] forKey:@"query"];
+    myDataSource.isActive = YES;
     [self.dataSource invalidate:YES];   // reset lastLoadedTime and clear out the list of items
     [self.dataSource load:TTURLRequestCachePolicyAny nextPage:NO];
 }

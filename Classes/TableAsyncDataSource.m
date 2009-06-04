@@ -11,8 +11,18 @@
 @synthesize url;
 @synthesize urlQueryParameters;
 @synthesize responseProcessor;
+@synthesize isActive;
 
 // TODO store lastLoadedTime under a dictionary where the keys are the fullUrl
+
+- (id)init
+{
+    if ((self = [super init])) {
+        isActive = YES;
+    }
+    return self;
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark TTTableViewDataSource
@@ -20,10 +30,10 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy nextPage:(BOOL)nextPage
 {
     NSLog(@"load:nextPage:%@ sent to %@", nextPage ? @"YES" : @"NO", self);
-    /*
-    if (!query)
+    if (!isActive) {
+        NSLog(@"TableAsyncDataSource is not active so I will ignore this request to load:nextPage:");
         return;
-     */
+    }
     
     /*
      *    Maybe instead of doing this, I should follow the loadPhotosFromIndex:toIndex:cachePolicy: model
