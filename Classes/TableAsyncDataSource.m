@@ -15,7 +15,7 @@
 {
     if ((self = [super init])) {
         isActive = YES;
-        numberOfItemsInServerRecordset = 0;
+        numberOfItemsInServerRecordset = -1;
     }
     return self;
 }
@@ -35,7 +35,7 @@
         return;
     }
 
-    NSAssert(self.webService, @"TableAsyncDataSouce cannot load:nextPage: until the webService property is set to a useful value.");
+    NSAssert(self.webService, @"TableAsyncDataSouce cannot load:nextPage: when the webService property is nil.");
     
     // calculate the offset into the recordset to be retrieved
     NSInteger start = nextPage ? [self.items count] + 1 : 1;
@@ -44,6 +44,35 @@
     [self.webService requestItemsFromIndex:start cachePolicy:cachePolicy delegate:self];
     
     isLoadingMore = start > 0;
+}
+
+- (id)tableView:(UITableView*)tableView objectForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.row == [tableView numberOfRowsInSection:0]-1 && self.hasMoreToLoad) {
+        // Vend the "Load More Items" button if this is the last row AND there is more data on the server.
+        NSString* title = TTLocalizedString(@"Load More Items...", @"");
+        NSString* subtitle = [NSString stringWithFormat:
+                              TTLocalizedString(@"Showing %d of %d Items", @""), [self.items count],
+                              numberOfItemsInServerRecordset];
+        
+        return [[[TTMoreButtonTableField alloc] initWithText:title subtitle:subtitle] autorelease];
+    } else {
+        // Allow the super class to vend items directly from the list of items.
+        return [super tableView:tableView objectForRowAtIndexPath:indexPath];
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.isLoading)
+        return 0;
+    
+    // if there is more data that can be loaded, make room for the "Load More Items" button.
+    NSInteger maxIndex = [self.items count];
+    return [self hasMoreToLoad] ? maxIndex + 1 : maxIndex;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +87,7 @@
 {
     TableItemsResponse *response = request.response;
     [self.items addObjectsFromArray:response.items];
+    [response.items removeAllObjects];
     numberOfItemsInServerRecordset = response.numberOfItemsInServerRecordset;
     NSLog(@"Retrieved %d results from a recordset totaling %d records", [self.items count], numberOfItemsInServerRecordset);
     [self dataSourceDidFinishLoad];
@@ -102,8 +132,6 @@
     if (erase) {
         // remove any items from a previous query
         [self.items removeAllObjects];
-        // TODO find a better way to clear the items in the WebService's responseProcessor
-        [[self.webService.responseProcessor items] removeAllObjects];
     }
     
     // ensure that the data source is now marked as "outdated"
