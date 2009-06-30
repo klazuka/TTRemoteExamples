@@ -37,11 +37,11 @@
 
     NSAssert(self.webService, @"TableAsyncDataSouce cannot load:nextPage: when the webService property is nil.");
     
-    // calculate the offset into the recordset to be retrieved
+    // Calculate the offset into the recordset to be retrieved
     NSInteger start = nextPage ? [self.items count] + 1 : 1;
     
-    // send the asynchronous request to the web service
-    [self.webService requestItemsFromIndex:start cachePolicy:cachePolicy delegate:self];
+    // Send the asynchronous request to the web service
+    [self.webService fetchItemsFromIndex:start cachePolicy:cachePolicy delegate:self];
     
     isLoadingMore = start > 0;
 }
@@ -55,7 +55,7 @@
                               TTLocalizedString(@"Showing %d of %d Items", @""), [self.items count],
                               numberOfItemsInServerRecordset];
         
-        return [[[TTMoreButtonTableField alloc] initWithText:title subtitle:subtitle] autorelease];
+        return [TTTableMoreButton itemWithText:title caption:subtitle];
     } else {
         // Allow the super class to vend items directly from the list of items.
         return [super tableView:tableView objectForRowAtIndexPath:indexPath];
@@ -70,7 +70,7 @@
     if (self.isLoading)
         return 0;
     
-    // if there is more data that can be loaded, make room for the "Load More Items" button.
+    // If there is more data that can be loaded, make room for the "Load More Items" button.
     NSInteger maxIndex = [self.items count];
     return [self hasMoreToLoad] ? maxIndex + 1 : maxIndex;
 }
@@ -85,6 +85,7 @@
 
 - (void)requestDidFinishLoad:(TTURLRequest*)request
 {
+    NSAssert([request.response isKindOfClass:[TableItemsResponse class]], @"request.response must be of kind TableItemsResponse!");
     TableItemsResponse *response = request.response;
     [self.items addObjectsFromArray:response.items];
     [response.items removeAllObjects];
@@ -130,11 +131,11 @@
 - (void)invalidate:(BOOL)erase
 {
     if (erase) {
-        // remove any items from a previous query
+        // Remove any items from a previous query
         [self.items removeAllObjects];
     }
     
-    // ensure that the data source is now marked as "outdated"
+    // Ensure that the data source is now marked as "outdated"
     [lastLoadedTime release];
     lastLoadedTime = [[NSDate distantPast] retain];
 }
@@ -167,6 +168,8 @@
     TTLOG(@"TableAsyncDataSource dataSourceDidFailLoadWithError:%@", [error description]);
     isLoading = NO;
     isLoadingMore = NO;
+    [lastLoadedTime release];
+    lastLoadedTime = [[NSDate date] retain];
     [super dataSourceDidFailLoadWithError:error];
 }
 

@@ -13,14 +13,14 @@
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
-    // configure the parser to parse the XML data that we received from the server.
+    // Configure the parser to parse the XML data that we received from the server.
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
     [parser setDelegate:self];
     [parser setShouldProcessNamespaces:NO];
     [parser setShouldReportNamespacePrefixes:NO];
     [parser setShouldResolveExternalEntities:NO];
     
-    // the XML data itself was downloaded from the internet on a background thread,
+    // The XML data itself was downloaded from the internet on a background thread,
     // but the XML will be *parsed* on the main thread... If your XML document is very large,
     // you will want to rewrite this class to parse on a background thread instead.
     [parser parse];
@@ -44,14 +44,13 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    // append each result to the TTDataSource's list of items
+    // Append each result to the TTDataSource's list of items
     // so that they can be displayed by the table view.
     for(NSDictionary *result in self.results) {     
-        [self.items addObject:[[[TTIconTableField alloc]
-                                initWithText:[result objectForKey:@"Title"]
-                                url:nil
-                                image:[result objectForKey:@"Url"]
-                                defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]] autorelease]];
+        [self.items addObject:[TTTableImageItem itemWithText:[result objectForKey:@"Title"]
+                                                         URL:nil
+                                                       image:[result objectForKey:@"Url"]
+                                                defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]]];
     }
 }
 
@@ -70,7 +69,7 @@
         return;
     }
     
-    // these are the attributes that we are interested in
+    // These are the attributes that we are interested in
     NSSet *searchProperties = [NSSet setWithObjects:@"Title", @"Url", nil];
     if ([searchProperties containsObject:elementName]) {
         self.currentProperty = [NSMutableString string];            
@@ -87,7 +86,7 @@
         return;
     }
     
-    // if we are not building up a property, then we are not interested in this end element.
+    // If we are not building up a property, then we are not interested in this end element.
     if (!self.currentProperty)
         return;
     

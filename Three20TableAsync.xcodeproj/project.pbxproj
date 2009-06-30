@@ -25,6 +25,7 @@
 		531976AB0FC8303E00657A15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531976AA0FC8303E00657A15 /* QuartzCore.framework */; };
 		539C36E30FD6A99D00117201 /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */; };
 		539C36E40FD6A99D00117201 /* GTMNSDictionary+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */; };
+		53D9764A0FFA4EED00E62B9A /* photo_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D976490FFA4EED00E62B9A /* photo_placeholder.png */; };
 		53F0E6460FD716AA00523DB2 /* TableItemsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */; };
 		53F0E6760FD717F200523DB2 /* YahooJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */; };
 		53F0E6770FD717F200523DB2 /* YahooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6730FD717F200523DB2 /* YahooViewController.m */; };
@@ -82,6 +83,7 @@
 		539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+URLArguments.m"; sourceTree = "<group>"; };
 		539C36E10FD6A99D00117201 /* GTMNSDictionary+URLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSDictionary+URLArguments.h"; sourceTree = "<group>"; };
 		539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSDictionary+URLArguments.m"; sourceTree = "<group>"; };
+		53D976490FFA4EED00E62B9A /* photo_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_placeholder.png; sourceTree = "<group>"; };
 		53F0E6440FD716AA00523DB2 /* TableItemsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableItemsResponse.h; sourceTree = "<group>"; };
 		53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableItemsResponse.m; sourceTree = "<group>"; };
 		53F0E6700FD717F200523DB2 /* YahooJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooJSONResponse.h; sourceTree = "<group>"; };
@@ -114,13 +116,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5319764C0FC82EF000657A15 /* .h */,
-				531976430FC82E7F00657A15 /* TableAsyncDataSource.m */,
-				53F0E7A90FD8522B00523DB2 /* WebService.m */,
-				53F0E6730FD717F200523DB2 /* YahooViewController.m */,
-				53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */,
-				53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */,
-				53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */,
+				53D976530FFA57DB00E62B9A /* Response Parsing */,
+				53D976520FFA57D600E62B9A /* Table Stuff */,
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
 			path = Classes;
@@ -162,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				53D976490FFA4EED00E62B9A /* photo_placeholder.png */,
 				8D1107310486CEB800E47090 /* Three20TableAsync-Info.plist */,
 			);
 			name = Resources;
@@ -181,13 +180,9 @@
 		5319764C0FC82EF000657A15 /* .h */ = {
 			isa = PBXGroup;
 			children = (
-				53F0E7A80FD8522B00523DB2 /* WebService.h */,
 				53F0E6720FD717F200523DB2 /* YahooViewController.h */,
-				53F0E6700FD717F200523DB2 /* YahooJSONResponse.h */,
-				53F0E6740FD717F200523DB2 /* YahooXMLResponse.h */,
-				53F0E6440FD716AA00523DB2 /* TableItemsResponse.h */,
+				53F0E7A80FD8522B00523DB2 /* WebService.h */,
 				531976420FC82E7F00657A15 /* TableAsyncDataSource.h */,
-				1D3623240D0F684500981E51 /* AppDelegate.h */,
 			);
 			name = .h;
 			sourceTree = "<group>";
@@ -239,6 +234,38 @@
 				539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */,
 			);
 			name = "Google Toolbox for Mac";
+			sourceTree = "<group>";
+		};
+		53D976520FFA57D600E62B9A /* Table Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				5319764C0FC82EF000657A15 /* .h */,
+				53F0E6730FD717F200523DB2 /* YahooViewController.m */,
+				53F0E7A90FD8522B00523DB2 /* WebService.m */,
+				531976430FC82E7F00657A15 /* TableAsyncDataSource.m */,
+			);
+			name = "Table Stuff";
+			sourceTree = "<group>";
+		};
+		53D976530FFA57DB00E62B9A /* Response Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				53D976540FFA57E600E62B9A /* .h */,
+				53F0E6450FD716AA00523DB2 /* TableItemsResponse.m */,
+				53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */,
+				53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */,
+			);
+			name = "Response Parsing";
+			sourceTree = "<group>";
+		};
+		53D976540FFA57E600E62B9A /* .h */ = {
+			isa = PBXGroup;
+			children = (
+				53F0E6440FD716AA00523DB2 /* TableItemsResponse.h */,
+				53F0E6700FD717F200523DB2 /* YahooJSONResponse.h */,
+				53F0E6740FD717F200523DB2 /* YahooXMLResponse.h */,
+			);
+			name = .h;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +329,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				531976910FC8301B00657A15 /* Three20.bundle in Resources */,
+				53D9764A0FFA4EED00E62B9A /* photo_placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +409,10 @@
 					./Support,
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos2.2.1;
 			};
@@ -399,7 +430,10 @@
 					../three20/src,
 					./Support,
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos2.2.1;
 			};

@@ -29,7 +29,7 @@
     return self;
 }
 
-- (void)requestItemsFromIndex:(NSInteger)fromIndex cachePolicy:(TTURLRequestCachePolicy)cachePolicy delegate:(id<TTURLRequestDelegate>)delegate
+- (void)fetchItemsFromIndex:(NSInteger)fromIndex cachePolicy:(TTURLRequestCachePolicy)cachePolicy delegate:(id<TTURLRequestDelegate>)delegate
 {
     if (self.recordsetStartKey) {
         [self.parameters setObject:[NSString stringWithFormat:@"%d", fromIndex] forKey:self.recordsetStartKey];
@@ -39,7 +39,7 @@
 
     NSMutableString *fullUrl = [NSMutableString stringWithFormat:@"http://%@%@", self.hostname, self.path];
     
-    // if it is a GET request, and there are parameters, append the URL-encoded parameters to the query part of the URL
+    // If it is a GET request, and there are parameters, append the URL-encoded parameters to the query part of the URL
     if ([[self.httpMethod uppercaseString] isEqualToString:@"GET"] && [self.parameters count] > 0)
         [fullUrl appendFormat:@"?%@", [self.parameters gtm_httpArgumentsString]];            
     
@@ -48,11 +48,11 @@
     request.response = self.responseProcessor;
     request.httpMethod = self.httpMethod;
     
-    // if it is a POST request, dump the parameters into the request (which will put them in the HTTP body)
+    // If it is a POST request, dump the parameters into the request (which will put them in the HTTP body)
     if ([[self.httpMethod uppercaseString] isEqualToString:@"POST"])
         [request.parameters addEntriesFromDictionary:self.parameters];
 
-    // dispatch the request
+    // Dispatch the request
     NSLog(@"WebService sending request fromIndex:%d to %@ using responseProcessor:%@", fromIndex, fullUrl, self.responseProcessor);
     [request send];    
 }

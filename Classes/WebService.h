@@ -28,6 +28,6 @@
 @property (nonatomic, retain) TableItemsResponse *responseProcessor;        // REQUIRED. an object that will process the HTTP response into a list of items suitable for display in a TTListDataSource/TableView combo.
 @property (nonatomic, retain) NSString *httpMethod;                         // optional. defaults to "GET". The other possible value is "POST".
 
-- (void)requestItemsFromIndex:(NSInteger)fromIndex cachePolicy:(TTURLRequestCachePolicy)cachePolicy delegate:(id<TTURLRequestDelegate>)delegate;  // send an asynchronous request to the server
+- (void)fetchItemsFromIndex:(NSInteger)fromIndex cachePolicy:(TTURLRequestCachePolicy)cachePolicy delegate:(id<TTURLRequestDelegate>)delegate;  // send an asynchronous request to the server
 
 @end
