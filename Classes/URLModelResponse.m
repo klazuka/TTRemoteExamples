@@ -1,30 +1,33 @@
 //
-//  TableItemsResponse.m
+//  URLModelResponse.m
 //  Three20TableAsync
 //
 //  Created by Keith Lazuka on 6/3/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "TableItemsResponse.h"
+#import "URLModelResponse.h"
 
-@implementation TableItemsResponse
+@implementation URLModelResponse
 
-@synthesize items;
-@synthesize numberOfItemsInServerRecordset;
+@synthesize objects;
+
++ (id)response
+{
+    return [[[[self class] alloc] init] autorelease];
+}
 
 - (id)init
 {
     if ((self = [super init])) {
-        items = [[NSMutableArray alloc] init];
-        numberOfItemsInServerRecordset = 0;
+        objects = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [items release];
+    [objects release];
     [super dealloc];
 }
 
@@ -33,7 +36,7 @@
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
-    NSAssert(NO, @"TableItemsResponse is an abstract class. Sub-classes must implement request:processResponse:data:");
+    NSAssert(NO, @"URLModelResponse is an abstract class. Sub-classes must implement request:processResponse:data:");
     return nil;
 }
 

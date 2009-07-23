@@ -3,6 +3,7 @@
 //
 
 #import "YahooJSONResponse.h"
+#import "SearchResult.h"
 #import "JSON/JSON.h"
 
 @implementation YahooJSONResponse
@@ -20,17 +21,9 @@
     NSDictionary *resultSet = [json objectForKey:@"ResultSet"];
     NSArray *results = [resultSet objectForKey:@"Result"];
     
-    // Now wrap the results from the server into an object
-    // that Three20's tableview system can natively display
-    // (in this case, it is a TTTableImageItem).
-    for (NSDictionary *result in results) {     
-        [self.items addObject:[TTTableImageItem itemWithText:[result objectForKey:@"Title"]
-                                                         URL:nil
-                                                       image:[result objectForKey:@"Url"]
-                                                defaultImage:[UIImage imageNamed:@"photo_placeholder.png"]]];
-    }
-    
-    self.numberOfItemsInServerRecordset = [[resultSet objectForKey:@"totalResultsAvailable"] intValue];
+    // Now wrap the results from the server into a domain-specific object.
+    for (NSDictionary *rawResult in results)
+        [self.objects addObject:[SearchResult searchResultFromDictionary:rawResult]]; 
     
     return nil;
 }

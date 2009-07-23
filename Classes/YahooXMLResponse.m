@@ -3,6 +3,7 @@
 //
 
 #import "YahooXMLResponse.h"
+#import "SearchResult.h"
 
 @implementation YahooXMLResponse
 
@@ -44,25 +45,15 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    // Append each result to the TTDataSource's list of items
-    // so that they can be displayed by the table view.
-    for(NSDictionary *result in self.results) {     
-        [self.items addObject:[TTTableImageItem itemWithText:[result objectForKey:@"Title"]
-                                                         URL:nil
-                                                       image:[result objectForKey:@"Url"]
-                                                defaultImage:[UIImage imageNamed:@"DefaultAlbum.png"]]];
-    }
+    // Now wrap the results from the server into a domain-specific object.
+    for (NSDictionary *rawResult in results)
+        [self.objects addObject:[SearchResult searchResultFromDictionary:rawResult]]; 
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if (qName)
         elementName = qName;
-    
-    if ([elementName isEqualToString:@"ResultSet"]) {
-        self.numberOfItemsInServerRecordset = [[attributeDict valueForKey:@"totalResultsAvailable"] intValue];
-        return;
-    }
     
     if ([elementName isEqualToString:@"Result"]) {
         self.currentResult = [NSMutableDictionary dictionary];

@@ -2,18 +2,16 @@
 //  YahooJSONResponse.h
 //
 
-#import <Foundation/Foundation.h>
-#import "TableItemsResponse.h"
+#import "URLModelResponse.h"
 
 /*
  *      YahooJSONResponse
  *
  *  Parses the HTTP response from a Yahoo Image Search query
- *  into a list of TTTableImageItem objects that the 
- *  TTTableViewController can easily display.
+ *  into a list of YahooSearchResult objects.
  *
  */
-@interface YahooJSONResponse : TableItemsResponse
+@interface YahooJSONResponse : URLModelResponse
 {
 }
 

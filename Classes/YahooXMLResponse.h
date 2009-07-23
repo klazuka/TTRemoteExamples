@@ -2,15 +2,13 @@
 //  YahooXMLResponse.h
 //
 
-#import <Foundation/Foundation.h>
-#import "TableItemsResponse.h"
+#import "URLModelResponse.h"
 
 /*
  *      YahooXMLResponse
  *
  *  Parses the HTTP response from a Yahoo Image Search query
- *  into a list of TTTableImageItem objects that the 
- *  TTTableViewController can easily display.
+ *  into a list of SearchResult objects.
  *
  *  I use Apple's streaming XML parser, although if I were
  *  to do it again, I would consider either:
@@ -19,7 +17,7 @@
  *      TouchXML - http://code.google.com/p/touchcode/wiki/TouchXML
  *  
  */
-@interface YahooXMLResponse : TableItemsResponse
+@interface YahooXMLResponse : URLModelResponse
 {
     NSMutableArray *results;               // List of Yahoosearch image result objects
     NSMutableDictionary *currentResult;    // Current Yahoosearch image result
