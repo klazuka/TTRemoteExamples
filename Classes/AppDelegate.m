@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "YahooViewController.h"
-#import "RemotePhotosViewController.h"
+#import "SearchTableViewController.h"
+#import "SearchPhotosViewController.h"
 
 @implementation AppDelegate
 
@@ -19,11 +19,10 @@
 {
     tabController = [[UITabBarController alloc] init];
     
-    // TODO: rename YahooViewController to include "Table" in the name
     [tabController setViewControllers:
      [NSArray arrayWithObjects:
-      [[[UINavigationController alloc] initWithRootViewController:[[[YahooViewController alloc] init] autorelease]] autorelease],
-      [[[UINavigationController alloc] initWithRootViewController:[[[RemotePhotosViewController alloc] init] autorelease]] autorelease],
+      [[[UINavigationController alloc] initWithRootViewController:[[[SearchTableViewController alloc] init] autorelease]] autorelease],
+      [[[UINavigationController alloc] initWithRootViewController:[[[SearchPhotosViewController alloc] init] autorelease]] autorelease],
       nil]];
     
     [window addSubview:[tabController view]];

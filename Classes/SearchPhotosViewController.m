@@ -1,12 +1,12 @@
 //
-//  RemotePhotosViewController.m
+//  SearchPhotosViewController.m
 //
 
-#import "RemotePhotosViewController.h"
+#import "SearchPhotosViewController.h"
 #import "PhotoSource.h"
 #import "YahooSearchResultsModel.h"
 
-@implementation RemotePhotosViewController
+@implementation SearchPhotosViewController
 
 - (id)init
 {
@@ -47,7 +47,7 @@
     
     // Search query field.
     queryField = [[UITextField alloc] initWithFrame:CGRectMake(30.f, 30.f, 260.f, 30.f)];
-    queryField.text = @"surfing";
+    queryField.placeholder = @"Image Search";
     queryField.autocorrectionType = NO;
     queryField.autocapitalizationType = NO;
     queryField.clearsOnBeginEditing = YES;

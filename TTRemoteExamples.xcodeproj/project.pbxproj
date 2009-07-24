@@ -26,8 +26,9 @@
 		539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146C1018E50D0085BC76 /* DDXMLElementAdditions.m */; };
 		539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146E1018E50D0085BC76 /* DDXMLNode.m */; };
 		539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A14711018E50D0085BC76 /* NSStringAdditions.m */; };
-		539A161A1019BC0E0085BC76 /* RemotePhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A16151019BC0E0085BC76 /* RemotePhotosViewController.m */; };
 		539A161C1019BC0E0085BC76 /* PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A16171019BC0E0085BC76 /* PhotoSource.m */; };
+		539A18B5101A0C950085BC76 /* SearchPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */; };
+		539A18B8101A0C9F0085BC76 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A18B7101A0C9F0085BC76 /* SearchTableViewController.m */; };
 		539C36E30FD6A99D00117201 /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */; };
 		539C36E40FD6A99D00117201 /* GTMNSDictionary+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */; };
 		53CDB8D01018B56800AE0B64 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CDB8CF1018B56800AE0B64 /* SearchResult.m */; };
@@ -37,7 +38,6 @@
 		53D9764A0FFA4EED00E62B9A /* photo_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D976490FFA4EED00E62B9A /* photo_placeholder.png */; };
 		53F0E6460FD716AA00523DB2 /* URLModelResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6450FD716AA00523DB2 /* URLModelResponse.m */; };
 		53F0E6760FD717F200523DB2 /* YahooJSONResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */; };
-		53F0E6770FD717F200523DB2 /* YahooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6730FD717F200523DB2 /* YahooViewController.m */; };
 		53F0E6780FD717F200523DB2 /* YahooXMLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */; };
 /* End PBXBuildFile section */
 
@@ -62,12 +62,11 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Three20TableAsync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Three20TableAsync.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* TTRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* Three20TableAsync_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Three20TableAsync_Prefix.pch; sourceTree = "<group>"; };
 		5319764F0FC82F7900657A15 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		531976500FC82F7900657A15 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		531976510FC82F7900657A15 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -97,9 +96,13 @@
 		539A14701018E50D0085BC76 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		539A14711018E50D0085BC76 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		539A16101019BC0E0085BC76 /* PhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSource.h; sourceTree = "<group>"; };
-		539A16131019BC0E0085BC76 /* RemotePhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemotePhotosViewController.h; sourceTree = "<group>"; };
-		539A16151019BC0E0085BC76 /* RemotePhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemotePhotosViewController.m; sourceTree = "<group>"; };
 		539A16171019BC0E0085BC76 /* PhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSource.m; sourceTree = "<group>"; };
+		539A1895101A07670085BC76 /* TTRemoteExamples_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTRemoteExamples_Prefix.pch; sourceTree = "<group>"; };
+		539A1896101A07780085BC76 /* TTRemoteExamples-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTRemoteExamples-Info.plist"; sourceTree = "<group>"; };
+		539A18B3101A0C950085BC76 /* SearchPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPhotosViewController.h; sourceTree = "<group>"; };
+		539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPhotosViewController.m; sourceTree = "<group>"; };
+		539A18B6101A0C9F0085BC76 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		539A18B7101A0C9F0085BC76 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		539C36DE0FD6A99D00117201 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		539C36DF0FD6A99D00117201 /* GTMNSString+URLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+URLArguments.h"; sourceTree = "<group>"; };
 		539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+URLArguments.m"; sourceTree = "<group>"; };
@@ -116,11 +119,8 @@
 		53F0E6450FD716AA00523DB2 /* URLModelResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLModelResponse.m; sourceTree = "<group>"; };
 		53F0E6700FD717F200523DB2 /* YahooJSONResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooJSONResponse.h; sourceTree = "<group>"; };
 		53F0E6710FD717F200523DB2 /* YahooJSONResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooJSONResponse.m; sourceTree = "<group>"; };
-		53F0E6720FD717F200523DB2 /* YahooViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooViewController.h; sourceTree = "<group>"; };
-		53F0E6730FD717F200523DB2 /* YahooViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooViewController.m; sourceTree = "<group>"; };
 		53F0E6740FD717F200523DB2 /* YahooXMLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooXMLResponse.h; sourceTree = "<group>"; };
 		53F0E6750FD717F200523DB2 /* YahooXMLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YahooXMLResponse.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Three20TableAsync-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Three20TableAsync-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +155,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Three20TableAsync.app */,
+				1D6058910D05DD3D006BFB54 /* TTRemote.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,8 +178,8 @@
 			children = (
 				531976A10FC8302500657A15 /* Three20.xcodeproj */,
 				531976900FC8301B00657A15 /* Three20.bundle */,
-				32CA4F630368D1EE00C91783 /* Three20TableAsync_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				539A1895101A07670085BC76 /* TTRemoteExamples_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -187,9 +187,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				539A1896101A07780085BC76 /* TTRemoteExamples-Info.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				53D976490FFA4EED00E62B9A /* photo_placeholder.png */,
-				8D1107310486CEB800E47090 /* Three20TableAsync-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -257,10 +257,10 @@
 		539A15FD1019BB730085BC76 /* Photo Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				539A18B3101A0C950085BC76 /* SearchPhotosViewController.h */,
+				539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */,
 				539A16101019BC0E0085BC76 /* PhotoSource.h */,
 				539A16171019BC0E0085BC76 /* PhotoSource.m */,
-				539A16131019BC0E0085BC76 /* RemotePhotosViewController.h */,
-				539A16151019BC0E0085BC76 /* RemotePhotosViewController.m */,
 			);
 			name = "Photo Stuff";
 			sourceTree = "<group>";
@@ -299,8 +299,8 @@
 		53D976520FFA57D600E62B9A /* Table Stuff */ = {
 			isa = PBXGroup;
 			children = (
-				53F0E6720FD717F200523DB2 /* YahooViewController.h */,
-				53F0E6730FD717F200523DB2 /* YahooViewController.m */,
+				539A18B6101A0C9F0085BC76 /* SearchTableViewController.h */,
+				539A18B7101A0C9F0085BC76 /* SearchTableViewController.m */,
 				53CDB8D51018C08700AE0B64 /* SearchResultsTableDataSource.h */,
 				53CDB8D61018C08700AE0B64 /* SearchResultsTableDataSource.m */,
 			);
@@ -323,9 +323,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Three20TableAsync */ = {
+		1D6058900D05DD3D006BFB54 /* TTRemoteExamples */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Three20TableAsync" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTRemoteExamples" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -336,9 +336,9 @@
 			dependencies = (
 				53CDB8E31018C60500AE0B64 /* PBXTargetDependency */,
 			);
-			name = Three20TableAsync;
+			name = TTRemoteExamples;
 			productName = Three20TableAsync;
-			productReference = 1D6058910D05DD3D006BFB54 /* Three20TableAsync.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* TTRemote.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -346,7 +346,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20TableAsync" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTRemoteExamples" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
@@ -359,7 +359,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Three20TableAsync */,
+				1D6058900D05DD3D006BFB54 /* TTRemoteExamples */,
 			);
 		};
 /* End PBXProject section */
@@ -404,7 +404,6 @@
 				539C36E40FD6A99D00117201 /* GTMNSDictionary+URLArguments.m in Sources */,
 				53F0E6460FD716AA00523DB2 /* URLModelResponse.m in Sources */,
 				53F0E6760FD717F200523DB2 /* YahooJSONResponse.m in Sources */,
-				53F0E6770FD717F200523DB2 /* YahooViewController.m in Sources */,
 				53F0E6780FD717F200523DB2 /* YahooXMLResponse.m in Sources */,
 				53CDB8D01018B56800AE0B64 /* SearchResult.m in Sources */,
 				53CDB8D41018B83F00AE0B64 /* YahooSearchResultsModel.m in Sources */,
@@ -414,8 +413,9 @@
 				539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */,
 				539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */,
 				539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */,
-				539A161A1019BC0E0085BC76 /* RemotePhotosViewController.m in Sources */,
 				539A161C1019BC0E0085BC76 /* PhotoSource.m in Sources */,
+				539A18B5101A0C950085BC76 /* SearchPhotosViewController.m in Sources */,
+				539A18B8101A0C9F0085BC76 /* SearchTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,9 +438,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Three20TableAsync_Prefix.pch;
-				INFOPLIST_FILE = "Three20TableAsync-Info.plist";
-				PRODUCT_NAME = Three20TableAsync;
+				GCC_PREFIX_HEADER = TTRemoteExamples_Prefix.pch;
+				INFOPLIST_FILE = "TTRemoteExamples-Info.plist";
+				PRODUCT_NAME = TTRemote;
 			};
 			name = Debug;
 		};
@@ -450,9 +450,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Three20TableAsync_Prefix.pch;
-				INFOPLIST_FILE = "Three20TableAsync-Info.plist";
-				PRODUCT_NAME = Three20TableAsync;
+				GCC_PREFIX_HEADER = TTRemoteExamples_Prefix.pch;
+				INFOPLIST_FILE = "TTRemoteExamples-Info.plist";
+				PRODUCT_NAME = TTRemote;
 			};
 			name = Release;
 		};
@@ -505,7 +505,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Three20TableAsync" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "TTRemoteExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -514,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Three20TableAsync" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TTRemoteExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

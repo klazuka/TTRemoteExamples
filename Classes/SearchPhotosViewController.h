@@ -1,12 +1,12 @@
 //
-//  RemotePhotosViewController.h
+//  SearchPhotosViewController.h
 //
 
 #import "Three20/Three20.h"
 
 @class PhotoSource;
 
-@interface RemotePhotosViewController : TTViewController
+@interface SearchPhotosViewController : TTViewController
 {
     UITextField *queryField;
     PhotoSource *photoSource;

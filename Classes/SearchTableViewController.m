@@ -1,12 +1,12 @@
 //
-//  YahooViewController.m
+//  SearchTableViewController.m
 //
 
-#import "YahooViewController.h"
+#import "SearchTableViewController.h"
 #import "YahooSearchResultsModel.h"
 #import "SearchResultsTableDataSource.h"
 
-@implementation YahooViewController
+@implementation SearchTableViewController
 
 - (id)init
 {
@@ -18,7 +18,7 @@
         ds.model = [[[YahooSearchResultsModel alloc] init] autorelease];
         
         // By setting the dataSource property, the model property for this
-        // class (YahooViewController) will automatically be hooked up 
+        // class (SearchTableViewController) will automatically be hooked up 
         // to point at the same model that the dataSource points at, 
         // which we just instantiated above.
         self.dataSource = ds;
