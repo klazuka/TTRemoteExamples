@@ -11,6 +11,8 @@
 - (id)init
 {
     if ((self = [super init])) {
+        self.title = @"Table Example";
+        
         // Initialize our TTTableViewDataSource and our TTModel.
         id<TTTableViewDataSource> ds = [SearchResultsTableDataSource dataSourceWithItems:nil];
         ds.model = [[[YahooSearchResultsModel alloc] init] autorelease];

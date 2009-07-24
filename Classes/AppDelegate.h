@@ -10,7 +10,7 @@
 
 @interface AppDelegate : NSObject <UIApplicationDelegate>
 {
-    UINavigationController *navController;
+    UITabBarController *tabController;
     UIWindow *window;
 }
 

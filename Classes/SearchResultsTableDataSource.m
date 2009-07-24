@@ -3,7 +3,7 @@
 //  Three20TableAsync
 //
 //  Created by Keith Lazuka on 7/23/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  
 //
 
 #import "SearchResultsTableDataSource.h"

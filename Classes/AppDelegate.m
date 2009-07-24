@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "YahooViewController.h"
+#import "RemotePhotosViewController.h"
 
 @implementation AppDelegate
 
@@ -16,20 +17,23 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    UIViewController *controller = [[[YahooViewController alloc] init] autorelease];
+    tabController = [[UITabBarController alloc] init];
     
-    navController = [[UINavigationController alloc] 
-                     initWithRootViewController:controller];
+    // TODO: rename YahooViewController to include "Table" in the name
+    [tabController setViewControllers:
+     [NSArray arrayWithObjects:
+      [[[UINavigationController alloc] initWithRootViewController:[[[YahooViewController alloc] init] autorelease]] autorelease],
+      [[[UINavigationController alloc] initWithRootViewController:[[[RemotePhotosViewController alloc] init] autorelease]] autorelease],
+      nil]];
     
-    [window addSubview:[navController view]];
-    
+    [window addSubview:[tabController view]];
     [window makeKeyAndVisible];
 }
 
 
 - (void)dealloc
 {
-    [navController release];
+    [tabController release];
     [window release];
     [super dealloc];
 }

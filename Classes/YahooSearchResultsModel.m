@@ -3,7 +3,7 @@
 //  Three20TableAsync
 //
 //  Created by Keith Lazuka on 7/23/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  
 //
 
 #import "YahooSearchResultsModel.h"
@@ -59,7 +59,6 @@ static NSString *kOutputFormat = @"json";
     [responseProcessor.objects removeAllObjects];
     
     // Dispatch the request.
-    TTLOG(@"Loading model resource from %@%@", host, path);
     [request send];
 }
 
