@@ -29,6 +29,7 @@
     NSArray *titles = [root nodesForXPath:@"//foo:Title" error:&error];
     NSArray *fullSizeURLs = [root nodesForXPath:@"//foo:Result/foo:Url" error:&error];
     NSArray *thumbnailURLs = [root nodesForXPath:@"//foo:Result/foo:Thumbnail/foo:Url" error:&error];
+    totalObjectsAvailableOnServer = [[[[root nodesForXPath:@"foo:ResultSet[@totalResultsAvailable]" error:&error] lastObject] stringValue] integerValue];
     
     NSAssert1(!error, @"XML Parse error: %@", error);
     NSAssert([titles count] == [fullSizeURLs count] && [titles count] == [thumbnailURLs count], 

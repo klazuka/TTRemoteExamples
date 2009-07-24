@@ -67,6 +67,11 @@ static NSString *kOutputFormat = @"json";
     return [[responseProcessor objects] copy];
 }
 
+- (NSUInteger)totalResultsAvailableOnServer
+{
+    return [responseProcessor totalObjectsAvailableOnServer];
+}
+
 - (void)dealloc
 {
     [searchTerms release];

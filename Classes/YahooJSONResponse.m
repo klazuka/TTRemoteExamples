@@ -16,12 +16,13 @@
     NSDictionary *json = [responseBody JSONValue];
     [responseBody release];
     
-    // Drill down into the JSON object to get the part 
+    // Drill down into the JSON object to get the parts
     // that we're actually interested in.
     NSDictionary *resultSet = [json objectForKey:@"ResultSet"];
-    NSArray *results = [resultSet objectForKey:@"Result"];
-    
+    totalObjectsAvailableOnServer = [[resultSet objectForKey:@"totalResultsAvailable"] integerValue];
+
     // Now wrap the results from the server into a domain-specific object.
+    NSArray *results = [resultSet objectForKey:@"Result"];
     for (NSDictionary *rawResult in results) {
         SearchResult *result = [[[SearchResult alloc] init] autorelease];
         result.title = [rawResult objectForKey:@"Title"];

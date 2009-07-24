@@ -10,7 +10,7 @@
 
 @implementation URLModelResponse
 
-@synthesize objects;
+@synthesize objects, totalObjectsAvailableOnServer;
 
 + (id)response
 {

@@ -25,6 +25,7 @@
 }
 
 @property (nonatomic, readonly) NSArray *results;   // When your TTTableViewDataSource needs data to display, it should use this method to acquire the parsed SearchResult domain objects.
+@property (nonatomic, readonly) NSUInteger totalResultsAvailableOnServer;
 @property (nonatomic, retain) NSString *searchTerms;
 
 @end

@@ -68,10 +68,7 @@
 
 - (NSInteger)numberOfPhotos 
 {
-    // TODO We need to find a way to obtain the totalNumberOfPhotos
-    //      available from the YahooSearchResultsModel.
-    //return totalNumberOfPhotos;
-    return 10;
+    return [model totalResultsAvailableOnServer];
 }
 
 - (NSInteger)maxPhotoIndex

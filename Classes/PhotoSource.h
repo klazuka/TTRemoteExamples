@@ -25,6 +25,6 @@
 
 - (id)initWithModel:(YahooSearchResultsModel *)theModel;    // Designated initializer.
 
-- (id<TTModel>)underlyingModel;     // The model to which this PhotoSource forwards to in order to conform to the TTModel protocol.
+- (id<TTModel>)underlyingModel;     // The model to which this PhotoSource forwards in order to conform to the TTModel protocol.
 
 @end
