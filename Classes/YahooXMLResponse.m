@@ -4,110 +4,46 @@
 
 #import "YahooXMLResponse.h"
 #import "SearchResult.h"
+#import "DDXMLDocument.h"
 
 @implementation YahooXMLResponse
-
-@synthesize results, currentResult, currentProperty;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark TTURLResponse
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
-    // Configure the parser to parse the XML data that we received from the server.
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-    [parser setDelegate:self];
-    [parser setShouldProcessNamespaces:NO];
-    [parser setShouldReportNamespacePrefixes:NO];
-    [parser setShouldResolveExternalEntities:NO];
+    NSError *error = nil;
     
-    // The XML data itself was downloaded from the internet on a background thread,
-    // but the XML will be *parsed* on the main thread... If your XML document is very large,
-    // you will want to rewrite this class to parse on a background thread instead.
-    [parser parse];
+    // Parse the XML document.
+    DDXMLDocument *doc = [[[DDXMLDocument alloc] initWithData:data options:0 error:&error] autorelease];
+    NSAssert(doc, @"Failed to parse XML. The document is nil.");
     
-    NSError *parseError = [parser parserError];
-    if (parseError) {
-        NSLog(@"YahooXMLResponse - parse error %@", parseError);
+    // Explicitly specify the default namespace (I don't have much experience
+    // with KissXML, but this is the only way I was able to get the XPath queries
+    // to work).
+    DDXMLElement *root = [doc rootElement];
+    [root addNamespace:[DDXMLNode namespaceWithName:@"foo" stringValue:@"urn:yahoo:srchmi"]];
+
+    // Query the XML tree according to the Yahoo Image Search API specification.
+    NSArray *titles = [root nodesForXPath:@"//foo:Title" error:&error];
+    NSArray *fullSizeURLs = [root nodesForXPath:@"//foo:Result/foo:Url" error:&error];
+    NSArray *thumbnailURLs = [root nodesForXPath:@"//foo:Result/foo:Thumbnail/foo:Url" error:&error];
+    
+    NSAssert1(!error, @"XML Parse error: %@", error);
+    NSAssert([titles count] == [fullSizeURLs count] && [titles count] == [thumbnailURLs count], 
+             @"XPath error: the quantity of the data retrieved does not match.");
+    
+    // Now construct our domain-specific object.
+    for (NSUInteger i = 0; i < [titles count]; i++) {
+        SearchResult *result = [[[SearchResult alloc] init] autorelease];
+        result.title = [[titles objectAtIndex:i] stringValue];
+        result.imageURL = [[fullSizeURLs objectAtIndex:i] stringValue];
+        result.thumbnailURL = [[thumbnailURLs objectAtIndex:i] stringValue];
+        [self.objects addObject:result];
     }
     
-    [parser release];
-    return parseError;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark NSXMLParserDelegate
-
-- (void)parserDidStartDocument:(NSXMLParser *)parser
-{
-    self.results = [NSMutableArray array];
-}
-
-- (void)parserDidEndDocument:(NSXMLParser *)parser
-{
-    // Now wrap the results from the server into a domain-specific object.
-    for (NSDictionary *rawResult in results)
-        [self.objects addObject:[SearchResult searchResultFromDictionary:rawResult]]; 
-}
-
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if (qName)
-        elementName = qName;
-    
-    if ([elementName isEqualToString:@"Result"]) {
-        self.currentResult = [NSMutableDictionary dictionary];
-        return;
-    }
-    
-    // These are the attributes that we are interested in
-    NSSet *searchProperties = [NSSet setWithObjects:@"Title", @"Url", nil];
-    if ([searchProperties containsObject:elementName]) {
-        self.currentProperty = [NSMutableString string];            
-    }
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if (qName)
-        elementName = qName;
-    
-    if ([elementName isEqualToString:@"Result"]) {
-        [self.results addObject:self.currentResult];
-        return;
-    }
-    
-    // If we are not building up a property, then we are not interested in this end element.
-    if (!self.currentProperty)
-        return;
-    
-    [self.currentResult setObject:self.currentProperty forKey:elementName];
-    
-    self.currentProperty = nil;
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    // If currentProperty is not nil, then we are interested in the 
-    // content of the current element being parsed. So append it to the buffer.
-    if (self.currentProperty)
-        [self.currentProperty appendString:string];
-}
-
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
-    NSLog(@"YahooXMLResponse: a parse error occurred: %@", parseError);
-}
-
-//////////////////////////////////////////////////////////////////////////
-#pragma mark -
-
-- (void)dealloc
-{
-    [results release];
-    [currentResult release];
-    [currentProperty release];
-    [super dealloc];
+    return nil;
 }
 
 @end

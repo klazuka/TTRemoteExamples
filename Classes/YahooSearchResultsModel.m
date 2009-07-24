@@ -55,7 +55,7 @@ static NSString *kOutputFormat = @"json";
     request.response = responseProcessor;
     request.httpMethod = @"GET";
     
-    // Clear out old data
+    // Clear out old data.
     [responseProcessor.objects removeAllObjects];
     
     // Dispatch the request.

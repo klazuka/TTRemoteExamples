@@ -21,7 +21,7 @@
     
     for (SearchResult *result in [(YahooSearchResultsModel*)self.model results])
         [self.items addObject:[TTTableImageItem itemWithText:result.title
-                                                    imageURL:result.imageURL
+                                                    imageURL:result.thumbnailURL
                                                 defaultImage:[UIImage imageNamed:@"photo_placeholder.png"]
                                                          URL:nil]];
     

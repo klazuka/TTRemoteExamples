@@ -11,20 +11,13 @@
 
 @implementation SearchResult
 
-@synthesize title, imageURL;
-
-+ (SearchResult *)searchResultFromDictionary:(NSDictionary *)dictionary
-{
-    SearchResult *result = [[[SearchResult alloc] init] autorelease];
-    result.title = [dictionary objectForKey:@"Title"];
-    result.imageURL = [dictionary objectForKey:@"Url"];
-    return result;
-}
+@synthesize title, imageURL, thumbnailURL;
 
 - (void)dealloc
 {
     [title release];
-    [imageURL release];    
+    [imageURL release];
+    [thumbnailURL release];
     [super dealloc];
 }
 

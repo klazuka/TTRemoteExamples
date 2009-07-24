@@ -21,6 +21,11 @@
 		531976610FC82F7900657A15 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5319765B0FC82F7900657A15 /* SBJsonWriter.m */; };
 		531976910FC8301B00657A15 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 531976900FC8301B00657A15 /* Three20.bundle */; };
 		531976AB0FC8303E00657A15 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531976AA0FC8303E00657A15 /* QuartzCore.framework */; };
+		539A14721018E50D0085BC76 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A14681018E50D0085BC76 /* DDXMLDocument.m */; };
+		539A14731018E50D0085BC76 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146A1018E50D0085BC76 /* DDXMLElement.m */; };
+		539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146C1018E50D0085BC76 /* DDXMLElementAdditions.m */; };
+		539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146E1018E50D0085BC76 /* DDXMLNode.m */; };
+		539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A14711018E50D0085BC76 /* NSStringAdditions.m */; };
 		539C36E30FD6A99D00117201 /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */; };
 		539C36E40FD6A99D00117201 /* GTMNSDictionary+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */; };
 		53CDB8D01018B56800AE0B64 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CDB8CF1018B56800AE0B64 /* SearchResult.m */; };
@@ -77,6 +82,18 @@
 		531976900FC8301B00657A15 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = three20/src/Three20.bundle; sourceTree = "<group>"; };
 		531976A10FC8302500657A15 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20.xcodeproj; sourceTree = "<group>"; };
 		531976AA0FC8303E00657A15 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		539A14661018E50D0085BC76 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
+		539A14671018E50D0085BC76 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
+		539A14681018E50D0085BC76 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
+		539A14691018E50D0085BC76 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
+		539A146A1018E50D0085BC76 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
+		539A146B1018E50D0085BC76 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		539A146C1018E50D0085BC76 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		539A146D1018E50D0085BC76 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
+		539A146E1018E50D0085BC76 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
+		539A146F1018E50D0085BC76 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		539A14701018E50D0085BC76 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
+		539A14711018E50D0085BC76 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		539C36DE0FD6A99D00117201 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		539C36DF0FD6A99D00117201 /* GTMNSString+URLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+URLArguments.h"; sourceTree = "<group>"; };
 		539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+URLArguments.m"; sourceTree = "<group>"; };
@@ -184,6 +201,7 @@
 		5319764D0FC82F7900657A15 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				539A14651018E4EA0085BC76 /* KissXML */,
 				539C36DD0FD6A99D00117201 /* Google Toolbox for Mac */,
 				5319764E0FC82F7900657A15 /* JSON */,
 			);
@@ -208,6 +226,25 @@
 				5319765B0FC82F7900657A15 /* SBJsonWriter.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		539A14651018E4EA0085BC76 /* KissXML */ = {
+			isa = PBXGroup;
+			children = (
+				539A14661018E50D0085BC76 /* DDXML.h */,
+				539A14671018E50D0085BC76 /* DDXMLDocument.h */,
+				539A14681018E50D0085BC76 /* DDXMLDocument.m */,
+				539A14691018E50D0085BC76 /* DDXMLElement.h */,
+				539A146A1018E50D0085BC76 /* DDXMLElement.m */,
+				539A146B1018E50D0085BC76 /* DDXMLElementAdditions.h */,
+				539A146C1018E50D0085BC76 /* DDXMLElementAdditions.m */,
+				539A146D1018E50D0085BC76 /* DDXMLNode.h */,
+				539A146E1018E50D0085BC76 /* DDXMLNode.m */,
+				539A146F1018E50D0085BC76 /* DDXMLPrivate.h */,
+				539A14701018E50D0085BC76 /* NSStringAdditions.h */,
+				539A14711018E50D0085BC76 /* NSStringAdditions.m */,
+			);
+			name = KissXML;
 			sourceTree = "<group>";
 		};
 		539C36DD0FD6A99D00117201 /* Google Toolbox for Mac */ = {
@@ -354,6 +391,11 @@
 				53CDB8D01018B56800AE0B64 /* SearchResult.m in Sources */,
 				53CDB8D41018B83F00AE0B64 /* YahooSearchResultsModel.m in Sources */,
 				53CDB8D71018C08700AE0B64 /* SearchResultsTableDataSource.m in Sources */,
+				539A14721018E50D0085BC76 /* DDXMLDocument.m in Sources */,
+				539A14731018E50D0085BC76 /* DDXMLElement.m in Sources */,
+				539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */,
+				539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */,
+				539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,11 +446,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
 					three20/src,
 					Support,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
+					"-lxml2",
 					"-all_load",
 					"-ObjC",
 				);

@@ -21,11 +21,11 @@
 {
     NSString *title;
     NSString *imageURL;
+    NSString *thumbnailURL;
 }
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *imageURL;
-
-+ (SearchResult *)searchResultFromDictionary:(NSDictionary *)dictionary;
+@property (nonatomic, retain) NSString *thumbnailURL;
 
 @end

@@ -12,7 +12,7 @@
 {
     NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    // Parse the JSON data that we retrieved from the server
+    // Parse the JSON data that we retrieved from the server.
     NSDictionary *json = [responseBody JSONValue];
     [responseBody release];
     
@@ -22,8 +22,13 @@
     NSArray *results = [resultSet objectForKey:@"Result"];
     
     // Now wrap the results from the server into a domain-specific object.
-    for (NSDictionary *rawResult in results)
-        [self.objects addObject:[SearchResult searchResultFromDictionary:rawResult]]; 
+    for (NSDictionary *rawResult in results) {
+        SearchResult *result = [[[SearchResult alloc] init] autorelease];
+        result.title = [rawResult objectForKey:@"Title"];
+        result.imageURL = [rawResult objectForKey:@"Url"];
+        result.thumbnailURL = [rawResult valueForKeyPath:@"Thumbnail.Url"];
+        [self.objects addObject:result];
+    }
     
     return nil;
 }
