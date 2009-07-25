@@ -27,7 +27,7 @@
         
         SearchResult *result = [[[SearchResult alloc] init] autorelease];
         result.bigImageURL = [rawResult objectForKey:@"url_m"];
-        result.thumbnailURL = [rawResult objectForKey:@"url_s"];
+        result.thumbnailURL = [rawResult objectForKey:@"url_t"];
         result.title = [rawResult objectForKey:@"title"];
         result.bigImageSize = CGSizeMake([[rawResult objectForKey:@"width_m"] floatValue],
                                          [[rawResult objectForKey:@"height_m"] floatValue]);

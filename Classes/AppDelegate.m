@@ -1,9 +1,7 @@
 //
 //  AppDelegate.m
-//  Three20TableAsync
 //
 //  Created by Keith Lazuka on 5/23/09.
-//  Copyright __MyCompanyName__ 2009. All rights reserved.
 //
 
 #import "AppDelegate.h"

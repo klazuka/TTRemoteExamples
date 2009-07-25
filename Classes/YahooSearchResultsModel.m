@@ -1,6 +1,5 @@
 //
 //  YahooSearchResultsModel.m
-//  Three20TableAsync
 //
 //  Created by Keith Lazuka on 7/23/09.
 //  

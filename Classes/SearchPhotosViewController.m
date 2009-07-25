@@ -4,7 +4,7 @@
 
 #import "SearchPhotosViewController.h"
 #import "SearchResultsPhotoSource.h"
-#import "YahooSearchResultsModel.h"
+#import "App.h"
 
 @implementation SearchPhotosViewController
 
@@ -23,6 +23,8 @@
     
     // Configure the photo source with the user's search terms
     // and load the new data.
+    // NOTE: the compiler warning here is wrong, it just doesn't know
+    //       that photoSource forwards to the model.
     [photoSource setSearchTerms:[queryField text]];
     [queryField resignFirstResponder];
     [photoSource load:TTURLRequestCachePolicyDefault more:NO];

@@ -3,10 +3,16 @@
  *  TTRemoteExamples
  *
  *  Created by Keith Lazuka on 7/25/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
  *
  */
 
+/*
+ *  NOTE: this is where you can switch the web service between Flickr and Yahoo
+ *        and between using the JSON and XML response processors.
+ *        All you need to do is set SearchServiceDefault and 
+ *        SearchResponseFormatDefault to the appropriate value.
+ *
+ */
 typedef enum {
     SearchServiceYahoo,
     SearchServiceFlickr,
@@ -17,7 +23,7 @@ extern SearchService CurrentSearchService;
 typedef enum {
     SearchResponseFormatJSON,
     SearchResponseFormatXML,
-    SearchResponseFormatDefault = SearchResponseFormatJSON
+    SearchResponseFormatDefault = SearchResponseFormatXML
 } SearchResponseFormat;
 extern SearchResponseFormat CurrentSearchResponseFormat;
 

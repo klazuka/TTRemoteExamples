@@ -1,6 +1,5 @@
 //
 //  SearchResultsPhotoSource.m
-//  Three20RemotePhotos
 //
 //  Created by Keith Lazuka on 5/29/09.
 //  

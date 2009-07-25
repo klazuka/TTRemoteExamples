@@ -7,6 +7,7 @@
 
 #import "FlickrSearchResultsModel.h"
 #import "FlickrJSONResponse.h"
+#import "FlickrXMLResponse.h"
 #import "GTMNSDictionary+URLArguments.h"
 #import "App.h"
 
@@ -20,9 +21,11 @@ const static NSUInteger kFlickrBatchSize = 16;   // The number of results to pul
 {
     if ((self = [super init])) {
         switch ( responseFormat ) {
-            // TODO add XML support
             case SearchResponseFormatJSON:
                 responseProcessor = [[FlickrJSONResponse alloc] init];
+                break;
+            case SearchResponseFormatXML:
+                responseProcessor = [[FlickrXMLResponse alloc] init];
                 break;
             default:
                 [NSException raise:@"SearchResponseFormat unknown!" format:nil];
@@ -57,7 +60,7 @@ const static NSUInteger kFlickrBatchSize = 16;   // The number of results to pul
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 @"flickr.photos.search", @"method",
                                 searchTerms, @"text",
-                                @"url_m,url_s", @"extras",
+                                @"url_m,url_t", @"extras",
                                 @"43f122b1a7fef3db2328bd75b38da08d", @"api_key", // TODO comment this out
                                 [responseProcessor format], @"format",
                                 [NSString stringWithFormat:@"%lu", (unsigned long)page], @"page",

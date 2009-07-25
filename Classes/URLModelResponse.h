@@ -1,6 +1,5 @@
 //
 //  URLModelResponse.h
-//  Three20TableAsync
 //
 //  Created by Keith Lazuka on 6/3/09.
 //  

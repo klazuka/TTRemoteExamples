@@ -3,13 +3,8 @@
 //
 
 #import "SearchTableViewController.h"
-#import "YahooSearchResultsModel.h"
-#import "FlickrSearchResultsModel.h"
 #import "SearchResultsTableDataSource.h"
 #import "App.h"
-
-//#define SEARCH_MODEL_CLASS YahooSearchResultsModel
-#define SEARCH_MODEL_CLASS FlickrSearchResultsModel
 
 @implementation SearchTableViewController
 
@@ -68,7 +63,7 @@
     // Configure our TTModel with the user's search terms
     // and tell the TTModelViewController to reload.
     [searchBar resignFirstResponder];
-    [(YahooSearchResultsModel*)self.model setSearchTerms:[searchBar text]];
+    [self.model setSearchTerms:[searchBar text]]; // TODO I guess I'm going to need to create a model base class, or at least a protocol.
     [self reload];
     [self.tableView scrollToTop:YES];
 }
