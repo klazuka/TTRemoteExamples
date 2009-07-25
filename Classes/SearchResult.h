@@ -10,6 +10,7 @@
 
 /*
  *      SearchResult
+ *      ------------
  *
  *  A domain-specific object that represents a single result
  *  from a search query. When the user performs a search,

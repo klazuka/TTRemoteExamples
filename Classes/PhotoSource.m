@@ -10,6 +10,11 @@
 #import "YahooSearchResultsModel.h"
 #import "SearchResult.h"
 
+// NOTE: I have disabled compiler warnings on this source file (PhotoSource.m)
+//       because the compiler keeps complaining that PhotoSource does not
+//       conform to the TTPhotoSource protocol because the compiler isn't
+//       smart enough to know about the Objective-C runtime forwarding.
+
 @interface PhotoItem : NSObject <TTPhoto>
 {
     NSString *caption;

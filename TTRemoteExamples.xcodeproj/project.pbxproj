@@ -26,7 +26,7 @@
 		539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146C1018E50D0085BC76 /* DDXMLElementAdditions.m */; };
 		539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146E1018E50D0085BC76 /* DDXMLNode.m */; };
 		539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A14711018E50D0085BC76 /* NSStringAdditions.m */; };
-		539A161C1019BC0E0085BC76 /* PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A16171019BC0E0085BC76 /* PhotoSource.m */; };
+		539A161C1019BC0E0085BC76 /* PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A16171019BC0E0085BC76 /* PhotoSource.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		539A18B5101A0C950085BC76 /* SearchPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */; };
 		539A18B8101A0C9F0085BC76 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A18B7101A0C9F0085BC76 /* SearchTableViewController.m */; };
 		539C36E30FD6A99D00117201 /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */; };

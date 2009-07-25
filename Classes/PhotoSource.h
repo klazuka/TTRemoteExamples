@@ -10,12 +10,25 @@
 
 @class YahooSearchResultsModel;
 
+/*
+ *      PhotoSource
+ *      -----------
+ *
+ *  Responsibilities:
+ *      - Load photos from the Internet (this responsibility is delegated to
+ *        the YahooSearchResultsModel via Objective-C forwarding).
+ *      - Vend TTPhoto instances to the photo browsing system.
+ *      - Tell the photo browsing system how many photos in total
+ *        are available on the server.
+ *
+ *  The TTPhotoSource protocol entails that you must also conform to the TTModel protocol.
+ *  Since we already have a useful TTModel in this demo app (YahooSearchResultsModel)
+ *  we do not want to reinvent the wheel here. Hence, I will just forward the TTModel
+ *  interface to the underlying model object.
+ *
+ */
 @interface PhotoSource : NSObject <TTPhotoSource>
 {
-    // The TTPhotoSource protocol entails that you must also conform to the TTModel protocol.
-    // Since we already have a useful TTModel in this demo app (YahooSearchResultsModel)
-    // we do not want to reinvent the wheel here. Hence, I will just forward the TTModel
-    // interface to the underlying model object.
     YahooSearchResultsModel *model;
     
     // Backing storage for TTPhotoSource properties.

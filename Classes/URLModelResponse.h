@@ -10,9 +10,16 @@
 
 /*
  *      URLModelResponse
+ *      ----------------
  *
  *  An abstract base class for HTTP response parsers
  *  that construct domain objects from the response.
+ *
+ *  Subclasses are responsible for setting the 
+ *  |totalObjectsAvailableOnServer| property from
+ *  the HTTP response. This enables features like
+ *  the photo browsing systems automatic
+ *  "Load More Photos" button.
  *
  */
 @interface URLModelResponse : NSObject <TTURLResponse>
