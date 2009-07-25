@@ -9,7 +9,6 @@
 #import "FlickrJSONResponse.h"
 #import "FlickrXMLResponse.h"
 #import "GTMNSDictionary+URLArguments.h"
-#import "App.h"
 
 const static NSUInteger kFlickrBatchSize = 16;   // The number of results to pull down with each request to the server.
 
@@ -61,7 +60,7 @@ const static NSUInteger kFlickrBatchSize = 16;   // The number of results to pul
                                 @"flickr.photos.search", @"method",
                                 searchTerms, @"text",
                                 @"url_m,url_t", @"extras",
-                                @"43f122b1a7fef3db2328bd75b38da08d", @"api_key", // TODO comment this out
+                                @"43f122b1a7fef3db2328bd75b38da08d", @"api_key", // I am providing my own API key as a convenience because I'm trusting you not to use it for evil.
                                 [responseProcessor format], @"format",
                                 [NSString stringWithFormat:@"%lu", (unsigned long)page], @"page",
                                 batchSize, @"per_page",

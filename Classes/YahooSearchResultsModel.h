@@ -6,6 +6,7 @@
 //
 
 #import "Three20/Three20.h"
+#import "SearchResultsModel.h"
 
 @class URLModelResponse;
 
@@ -40,15 +41,13 @@
  *  directly into the YahooSearchResultsModel class.
  *
  */
-@interface YahooSearchResultsModel : TTURLRequestModel
+@interface YahooSearchResultsModel : TTURLRequestModel <SearchResultsModel>
 {
     URLModelResponse *responseProcessor;
     NSString *searchTerms;
     NSUInteger recordOffset;
 }
 
-@property (nonatomic, readonly) NSArray *results;   // When your TTTableViewDataSource needs data to display, it should use this method to acquire the parsed SearchResult domain objects.
-@property (nonatomic, readonly) NSUInteger totalResultsAvailableOnServer;
-@property (nonatomic, retain) NSString *searchTerms;
+// The designated initializer is defined in the SearchResultsModel protocol.
 
 @end

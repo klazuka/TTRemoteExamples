@@ -9,7 +9,6 @@
 #import "YahooJSONResponse.h"
 #import "YahooXMLResponse.h"
 #import "GTMNSDictionary+URLArguments.h"
-#import "App.h"
 
 const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull down with each request to the server.
 

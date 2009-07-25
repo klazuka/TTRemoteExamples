@@ -7,6 +7,7 @@
 
 #import "SearchResultsTableDataSource.h"
 #import "SearchResult.h"
+#import "SearchResultsModel.h"
 
 @implementation SearchResultsTableDataSource
 
@@ -19,7 +20,7 @@
     
     // Construct an object that is suitable for the table view system
     // from each SearchResult domain object that we retrieve from the TTModel.
-    for (SearchResult *result in [self.model results])
+    for (SearchResult *result in [(id<SearchResultsModel>)self.model results])
         [self.items addObject:[TTTableImageItem itemWithText:result.title
                                                     imageURL:result.thumbnailURL
                                                 defaultImage:[UIImage imageNamed:@"photo_placeholder.png"]

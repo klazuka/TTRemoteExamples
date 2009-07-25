@@ -7,7 +7,7 @@
 
 #import "Three20/Three20.h"
 
-@class YahooSearchResultsModel;
+@protocol SearchResultsModel;
 
 /*
  *      SearchResultsPhotoSource
@@ -28,15 +28,15 @@
  */
 @interface SearchResultsPhotoSource : NSObject <TTPhotoSource>
 {
-    YahooSearchResultsModel *model;
+    id<SearchResultsModel> *model;
     
     // Backing storage for TTPhotoSource properties.
     NSString *albumTitle;
     int totalNumberOfPhotos;    
 }
 
-- (id)initWithModel:(YahooSearchResultsModel *)theModel;    // Designated initializer.
+- (id)initWithModel:(id<SearchResultsModel>)theModel;    // Designated initializer.
 
-- (id<TTModel>)underlyingModel;     // The model to which this PhotoSource forwards in order to conform to the TTModel protocol.
+- (id<SearchResultsModel>)underlyingModel;     // The model to which this PhotoSource forwards in order to conform to the TTModel protocol.
 
 @end

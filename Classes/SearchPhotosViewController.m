@@ -4,7 +4,7 @@
 
 #import "SearchPhotosViewController.h"
 #import "SearchResultsPhotoSource.h"
-#import "App.h"
+#import "SearchResultsModel.h"
 
 @implementation SearchPhotosViewController
 
@@ -21,12 +21,16 @@
 {
     NSLog(@"Searching for %@", queryField.text);
     
-    // Configure the photo source with the user's search terms
-    // and load the new data.
-    // NOTE: the compiler warning here is wrong, it just doesn't know
-    //       that photoSource forwards to the model.
-    [photoSource setSearchTerms:[queryField text]];
     [queryField resignFirstResponder];
+    
+    // Configure the photo source with the user's search terms.
+    // NOTE: I have to explicitly cast the photoSource to the SearchResultsModel
+    //       protocol because otherwise the compiler will issue a warning
+    //       (because the compiler doesn't know that the photoSource forwards
+    //       to a SearchResultsModel at runtime)
+    [(id<SearchResultsModel>)photoSource setSearchTerms:[queryField text]];
+    
+    // Load the new data
     [photoSource load:TTURLRequestCachePolicyDefault more:NO];
     
     // Display the updated photoSource.

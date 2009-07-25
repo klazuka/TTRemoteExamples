@@ -31,7 +31,7 @@
     NSArray *bigImageWidths = [root nodesForXPath:@"//foo:Result/foo:Width" error:&error];
     NSArray *bigImageHeights = [root nodesForXPath:@"//foo:Result/foo:Height" error:&error];
     NSArray *thumbnailURLs = [root nodesForXPath:@"//foo:Result/foo:Thumbnail/foo:Url" error:&error];
-    totalObjectsAvailableOnServer = [[[[root nodesForXPath:@"foo:ResultSet[@totalResultsAvailable]" error:&error] lastObject] stringValue] integerValue];
+    totalObjectsAvailableOnServer = [[[[root nodesForXPath:@"//foo:ResultSet/@totalResultsAvailable" error:&error] lastObject] stringValue] integerValue];
     
     NSAssert1(!error, @"XML Parse error: %@", error);
     NSAssert([titles count] == [bigImageURLs count] && [titles count] == [thumbnailURLs count], 
@@ -43,8 +43,8 @@
         result.title = [[titles objectAtIndex:i] stringValue];
         result.bigImageURL = [[bigImageURLs objectAtIndex:i] stringValue];
         result.thumbnailURL = [[thumbnailURLs objectAtIndex:i] stringValue];
-        result.bigImageSize = CGSizeMake([[bigImageWidths objectAtIndex:i] intValue], 
-                                         [[bigImageHeights objectAtIndex:i] intValue]);
+        result.bigImageSize = CGSizeMake([[[bigImageWidths objectAtIndex:i] stringValue] intValue], 
+                                         [[[bigImageHeights objectAtIndex:i] stringValue] intValue]);
         [self.objects addObject:result];
     }
     
