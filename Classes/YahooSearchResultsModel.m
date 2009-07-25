@@ -90,7 +90,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
 
 - (NSArray *)results
 {
-    return [[responseProcessor objects] copy];
+    return [[[responseProcessor objects] copy] autorelease];
 }
 
 - (NSUInteger)totalResultsAvailableOnServer
