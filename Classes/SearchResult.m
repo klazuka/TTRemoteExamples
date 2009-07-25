@@ -11,30 +11,12 @@
 
 @implementation SearchResult
 
-@synthesize title, imageURL, thumbnailURL;
-@synthesize photoSource, size, index;
-
-// ----------------------------------------------------------
-#pragma mark TTPhoto protocol
-
-- (NSString*)URLForVersion:(TTPhotoVersion)version
-{
-    return (version == TTPhotoVersionThumbnail && thumbnailURL) 
-                ? thumbnailURL
-                : imageURL;
-}
-
-// Alias the TTPhoto |caption| property to the |title| property.
-- (NSString *)caption { return self.title; }
-- (void)setCaption:(NSString *)caption { self.title = caption; }
-
-// ----------------------------------------------------------
-#pragma mark -
+@synthesize title, bigImageURL, thumbnailURL, bigImageSize;
 
 - (void)dealloc
 {
     [title release];
-    [imageURL release];
+    [bigImageURL release];
     [thumbnailURL release];
     [super dealloc];
 }

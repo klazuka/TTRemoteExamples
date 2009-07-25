@@ -30,10 +30,10 @@
     // Display the updated photoSource.
     TTThumbsViewController *thumbs = [[TTThumbsViewController alloc] init];
     [thumbs setPhotoSource:photoSource];
-    // Ugly hack, the TTModel system does not expect that your TTPhotoSource implementation
+    // Ugly hack: the TTModel system does not expect that your TTPhotoSource implementation
     // is actually forwarding to another object in order to conform to the TTModel aspect
     // of the TTPhotoSource protocol. So I have to ensure that the TTModelViewController's
-    // notion of what its model is matches the object the it will receive 
+    // notion of what its model is matches the object that it will receive 
     // via the TTModelDelegate messages.
     thumbs.model = [photoSource underlyingModel]; 
     [self.navigationController pushViewController:thumbs animated:YES];

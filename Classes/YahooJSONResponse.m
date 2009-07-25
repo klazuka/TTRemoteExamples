@@ -26,8 +26,10 @@
     for (NSDictionary *rawResult in results) {
         SearchResult *result = [[[SearchResult alloc] init] autorelease];
         result.title = [rawResult objectForKey:@"Title"];
-        result.imageURL = [rawResult objectForKey:@"Url"];
+        result.bigImageURL = [rawResult objectForKey:@"Url"];
         result.thumbnailURL = [rawResult valueForKeyPath:@"Thumbnail.Url"];
+        result.bigImageSize = CGSizeMake([[rawResult objectForKey:@"Width"] intValue], 
+                                         [[rawResult objectForKey:@"Height"] intValue]);
         [self.objects addObject:result];
     }
     

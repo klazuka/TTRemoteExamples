@@ -18,6 +18,7 @@
 static NSString *kOutputFormat = @"json";
 //static NSString *kOutputFormat = @"xml";
 
+const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull down with each request to the server.
 
 @implementation YahooSearchResultsModel
 
@@ -40,6 +41,14 @@ static NSString *kOutputFormat = @"json";
         return;
     }
     
+    if (more)
+        recordOffset += kYahooBatchSize;
+    else
+        [responseProcessor.objects removeAllObjects]; // Clear out data from previous request.
+    
+    NSString *offset = [NSString stringWithFormat:@"%lu", (unsigned long)recordOffset];
+    NSString *batchSize = [NSString stringWithFormat:@"%lu", (unsigned long)kYahooBatchSize];
+    
     // Construct the request.
     NSString *host = @"http://search.yahooapis.com";
     NSString *path = @"/ImageSearchService/V1/imageSearch";
@@ -47,6 +56,8 @@ static NSString *kOutputFormat = @"json";
                                 searchTerms, @"query",
                                 @"YahooDemo", @"appid",
                                 kOutputFormat, @"output",
+                                offset, @"start",
+                                batchSize, @"results",
                                 nil];
             
     NSString *url = [host stringByAppendingFormat:@"%@?%@", path, [parameters gtm_httpArgumentsString]];
@@ -55,11 +66,26 @@ static NSString *kOutputFormat = @"json";
     request.response = responseProcessor;
     request.httpMethod = @"GET";
     
-    // Clear out old data.
-    [responseProcessor.objects removeAllObjects];
-    
     // Dispatch the request.
     [request send];
+}
+
+- (void)reset
+{
+    [super reset];
+    [searchTerms release];
+    searchTerms = nil;
+    recordOffset = 0;
+    [[responseProcessor objects] removeAllObjects];
+}
+
+- (void)setSearchTerms:(NSString *)theSearchTerms
+{
+    if (![theSearchTerms isEqualToString:searchTerms]) {
+        [searchTerms release];
+        searchTerms = [theSearchTerms retain];
+        recordOffset = 0;
+    }
 }
 
 - (NSArray *)results

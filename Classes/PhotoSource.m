@@ -8,6 +8,24 @@
 
 #import "PhotoSource.h"
 #import "YahooSearchResultsModel.h"
+#import "SearchResult.h"
+
+@interface PhotoItem : NSObject <TTPhoto>
+{
+    NSString *caption;
+    NSString *imageURL;
+    NSString *thumbnailURL;
+    id <TTPhotoSource> photoSource;
+    CGSize size;
+    NSInteger index;
+}
+@property (nonatomic, retain) NSString *imageURL;
+@property (nonatomic, retain) NSString *thumbnailURL;
++ (id)itemWithImageURL:(NSString*)imageURL thumbImageURL:(NSString*)thumbImageURL caption:(NSString*)caption size:(CGSize)size;
+@end
+
+// -----------------------------------------------------------------------
+#pragma mark -
 
 @implementation PhotoSource
 
@@ -81,9 +99,11 @@
     if (index < 0 || index > [self maxPhotoIndex])
         return nil;
     
-    // TODO Wrap the SearchResult in a TTPhotoItem and get rid of 
-    //      SearchResult's TTPhoto protocol conformance.
-    id<TTPhoto> photo = [[model results] objectAtIndex:index];
+    // Construct an object (PhotoItem) that is suitable for Three20's
+    // photo browsing system from the domain object (SearchResult)
+    // at the specified index in the TTModel.
+    SearchResult *result = [[model results] objectAtIndex:index];
+    id<TTPhoto> photo = [PhotoItem itemWithImageURL:result.bigImageURL thumbImageURL:result.thumbnailURL caption:result.title size:result.bigImageSize];
     photo.index = index;
     photo.photoSource = self;
     return photo;
@@ -106,3 +126,42 @@
 
 @end
 
+// -----------------------------------------------------------------------
+#pragma mark -
+
+@implementation PhotoItem
+
+@synthesize caption, photoSource, size, index; // properties declared in the TTPhoto protocol
+@synthesize imageURL, thumbnailURL; // PhotoItem's own properties
+
++ (id)itemWithImageURL:(NSString*)theImageURL thumbImageURL:(NSString*)theThumbImageURL caption:(NSString*)theCaption size:(CGSize)theSize
+{
+    PhotoItem *item = [[[[self class] alloc] init] autorelease];
+    item.caption = theCaption;
+    item.imageURL = theImageURL;
+    item.thumbnailURL = theThumbImageURL;
+    item.size = theSize;
+    return item;
+}
+
+// ----------------------------------------------------------
+#pragma mark TTPhoto protocol
+
+- (NSString*)URLForVersion:(TTPhotoVersion)version
+{
+    return (version == TTPhotoVersionThumbnail && thumbnailURL) 
+    ? thumbnailURL
+    : imageURL;
+}
+
+#pragma mark - 
+
+- (void)dealloc
+{
+    [caption release];
+    [imageURL release];
+    [thumbnailURL release];
+    [super dealloc];
+}
+
+@end

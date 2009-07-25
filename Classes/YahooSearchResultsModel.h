@@ -22,6 +22,7 @@
 {
     URLModelResponse *responseProcessor;
     NSString *searchTerms;
+    NSUInteger recordOffset;
 }
 
 @property (nonatomic, readonly) NSArray *results;   // When your TTTableViewDataSource needs data to display, it should use this method to acquire the parsed SearchResult domain objects.

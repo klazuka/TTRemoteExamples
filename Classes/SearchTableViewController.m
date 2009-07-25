@@ -65,6 +65,7 @@
     [searchBar resignFirstResponder];
     [(YahooSearchResultsModel*)self.model setSearchTerms:[searchBar text]];
     [self reload];
+    [self.tableView scrollToTop:YES];
 }
 
 @end

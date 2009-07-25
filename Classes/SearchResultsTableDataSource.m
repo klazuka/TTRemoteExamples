@@ -19,6 +19,8 @@
     TTLOG(@"Removing all objects in the table view.");
     [self.items removeAllObjects];
     
+    // Construct an object that is suitable for the table view system
+    // from each SearchResult domain object that we retrieve from the TTModel.
     for (SearchResult *result in [(YahooSearchResultsModel*)self.model results])
         [self.items addObject:[TTTableImageItem itemWithText:result.title
                                                     imageURL:result.thumbnailURL
