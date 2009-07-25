@@ -40,4 +40,10 @@
     return nil;
 }
 
+- (NSString *)format
+{
+    NSAssert(NO, @"URLModelResponse is an abstract class. Sub-classes must implement format");
+    return nil;
+}
+
 @end

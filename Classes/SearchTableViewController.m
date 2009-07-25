@@ -4,7 +4,12 @@
 
 #import "SearchTableViewController.h"
 #import "YahooSearchResultsModel.h"
+#import "FlickrSearchResultsModel.h"
 #import "SearchResultsTableDataSource.h"
+#import "App.h"
+
+//#define SEARCH_MODEL_CLASS YahooSearchResultsModel
+#define SEARCH_MODEL_CLASS FlickrSearchResultsModel
 
 @implementation SearchTableViewController
 
@@ -15,7 +20,7 @@
         
         // Initialize our TTTableViewDataSource and our TTModel.
         id<TTTableViewDataSource> ds = [SearchResultsTableDataSource dataSourceWithItems:nil];
-        ds.model = [[[YahooSearchResultsModel alloc] init] autorelease];
+        ds.model = CreateSearchModelWithCurrentSettings();
         
         // By setting the dataSource property, the model property for this
         // class (SearchTableViewController) will automatically be hooked up 

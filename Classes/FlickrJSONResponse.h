@@ -1,14 +1,14 @@
 //
-//  YahooJSONResponse.h
+//  FlickrJSONResponse.h
 //
 
 #import "URLModelResponse.h"
 
 /*
- *      YahooJSONResponse
+ *      FlickrJSONResponse
  *      -----------------
  *
- *  Parses the HTTP response from a Yahoo Image Search query
+ *  Parses the HTTP response from a Flickr image search query
  *  into a list of SearchResult objects.
  *
  *  I use json-framework (http://code.google.com/p/json-framework/)
@@ -16,7 +16,7 @@
  *  in which we're interested to our domain object, "SearchResult".
  *
  */
-@interface YahooJSONResponse : URLModelResponse
+@interface FlickrJSONResponse : URLModelResponse
 {
 }
 

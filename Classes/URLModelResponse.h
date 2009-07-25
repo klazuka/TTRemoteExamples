@@ -32,5 +32,6 @@
 @property (nonatomic, readonly) NSUInteger totalObjectsAvailableOnServer;
 
 + (id)response;
+- (NSString *)format;
 
 @end

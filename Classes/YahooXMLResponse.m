@@ -51,4 +51,6 @@
     return nil;
 }
 
+- (NSString *)format { return @"xml"; }
+
 @end

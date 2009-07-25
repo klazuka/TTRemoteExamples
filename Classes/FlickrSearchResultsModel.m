@@ -1,20 +1,18 @@
 //
-//  YahooSearchResultsModel.m
-//  Three20TableAsync
+//  FlickrSearchResultsModel.m
 //
 //  Created by Keith Lazuka on 7/23/09.
 //  
 //
 
-#import "YahooSearchResultsModel.h"
-#import "YahooJSONResponse.h"
-#import "YahooXMLResponse.h"
+#import "FlickrSearchResultsModel.h"
+#import "FlickrJSONResponse.h"
 #import "GTMNSDictionary+URLArguments.h"
 #import "App.h"
 
-const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull down with each request to the server.
+const static NSUInteger kFlickrBatchSize = 16;   // The number of results to pull down with each request to the server.
 
-@implementation YahooSearchResultsModel
+@implementation FlickrSearchResultsModel
 
 @synthesize searchTerms;
 
@@ -22,15 +20,14 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
 {
     if ((self = [super init])) {
         switch ( responseFormat ) {
+            // TODO add XML support
             case SearchResponseFormatJSON:
-                responseProcessor = [[YahooJSONResponse alloc] init];
-                break;
-            case SearchResponseFormatXML:
-                responseProcessor = [[YahooXMLResponse alloc] init];
+                responseProcessor = [[FlickrJSONResponse alloc] init];
                 break;
             default:
                 [NSException raise:@"SearchResponseFormat unknown!" format:nil];
         }
+        page = 1;
     }
     return self;
 }
@@ -48,22 +45,24 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
     }
     
     if (more)
-        recordOffset += kYahooBatchSize;
+        page++;
     else
         [responseProcessor.objects removeAllObjects]; // Clear out data from previous request.
     
-    NSString *offset = [NSString stringWithFormat:@"%lu", (unsigned long)recordOffset];
-    NSString *batchSize = [NSString stringWithFormat:@"%lu", (unsigned long)kYahooBatchSize];
+    NSString *batchSize = [NSString stringWithFormat:@"%lu", (unsigned long)kFlickrBatchSize];
     
     // Construct the request.
-    NSString *host = @"http://search.yahooapis.com";
-    NSString *path = @"/ImageSearchService/V1/imageSearch";
+    NSString *host = @"http://api.flickr.com";
+    NSString *path = @"/services/rest/";
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                                searchTerms, @"query",
-                                @"YahooDemo", @"appid",
-                                [responseProcessor format], @"output",
-                                offset, @"start",
-                                batchSize, @"results",
+                                @"flickr.photos.search", @"method",
+                                searchTerms, @"text",
+                                @"url_m,url_s", @"extras",
+                                @"43f122b1a7fef3db2328bd75b38da08d", @"api_key", // TODO comment this out
+                                [responseProcessor format], @"format",
+                                [NSString stringWithFormat:@"%lu", (unsigned long)page], @"page",
+                                batchSize, @"per_page",
+                                @"1", @"nojsoncallback",
                                 nil];
             
     NSString *url = [host stringByAppendingFormat:@"%@?%@", path, [parameters gtm_httpArgumentsString]];
@@ -81,7 +80,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
     [super reset];
     [searchTerms release];
     searchTerms = nil;
-    recordOffset = 0;
+    page = 1;
     [[responseProcessor objects] removeAllObjects];
 }
 
@@ -90,7 +89,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
     if (![theSearchTerms isEqualToString:searchTerms]) {
         [searchTerms release];
         searchTerms = [theSearchTerms retain];
-        recordOffset = 0;
+        page = 1;
     }
 }
 

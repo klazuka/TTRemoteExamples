@@ -9,7 +9,36 @@
 #import "AppDelegate.h"
 #import "SearchTableViewController.h"
 #import "SearchPhotosViewController.h"
+#import "YahooSearchResultsModel.h"
+#import "FlickrSearchResultsModel.h"
+#import "App.h"
 #import "Three20/Three20.h"
+
+SearchService CurrentSearchService = SearchServiceDefault;
+SearchResponseFormat CurrentSearchResponseFormat = SearchResponseFormatDefault;
+
+id CreateSearchModel(SearchService service, SearchResponseFormat responseFormat)
+{
+    id model = nil;
+    switch ( service ) {
+        case SearchServiceYahoo:
+            model = [[[YahooSearchResultsModel alloc] initWithResponseFormat:responseFormat] autorelease];
+            break;
+        case SearchServiceFlickr:
+            model = [[[FlickrSearchResultsModel alloc] initWithResponseFormat:responseFormat] autorelease];
+            break;
+        default:
+            [NSException raise:@"CurrentSearchService unknown" format:nil];
+            break;
+    }
+    return model;
+}
+
+id CreateSearchModelWithCurrentSettings(void)
+{
+    return CreateSearchModel(CurrentSearchService, CurrentSearchResponseFormat);
+}
+
 
 @implementation AppDelegate
 
@@ -27,7 +56,7 @@
     // you want, I am just setting this to a reasonable value
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:10*320*480];
-    
+        
     tabController = [[UITabBarController alloc] init];
     
     [tabController setViewControllers:

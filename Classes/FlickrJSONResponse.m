@@ -1,12 +1,12 @@
 //
-//  YahooJSONResponse.m
+//  FlickrJSONResponse.m
 //
 
-#import "YahooJSONResponse.h"
+#import "FlickrJSONResponse.h"
 #import "SearchResult.h"
 #import "JSON/JSON.h"
 
-@implementation YahooJSONResponse
+@implementation FlickrJSONResponse
 
 - (NSError*)request:(TTURLRequest*)request processResponse:(NSHTTPURLResponse*)response data:(id)data
 {
@@ -18,18 +18,20 @@
     
     // Drill down into the JSON object to get the parts
     // that we're actually interested in.
-    NSDictionary *resultSet = [json objectForKey:@"ResultSet"];
-    totalObjectsAvailableOnServer = [[resultSet objectForKey:@"totalResultsAvailable"] integerValue];
+    NSDictionary *root = [json objectForKey:@"photos"];
+    totalObjectsAvailableOnServer = [[root objectForKey:@"total"] integerValue];
 
     // Now wrap the results from the server into a domain-specific object.
-    NSArray *results = [resultSet objectForKey:@"Result"];
+    NSArray *results = [root objectForKey:@"photo"];
     for (NSDictionary *rawResult in results) {
+        
         SearchResult *result = [[[SearchResult alloc] init] autorelease];
-        result.title = [rawResult objectForKey:@"Title"];
-        result.bigImageURL = [rawResult objectForKey:@"Url"];
-        result.thumbnailURL = [rawResult valueForKeyPath:@"Thumbnail.Url"];
-        result.bigImageSize = CGSizeMake([[rawResult objectForKey:@"Width"] intValue], 
-                                         [[rawResult objectForKey:@"Height"] intValue]);
+        result.bigImageURL = [rawResult objectForKey:@"url_m"];
+        result.thumbnailURL = [rawResult objectForKey:@"url_s"];
+        result.title = [rawResult objectForKey:@"title"];
+        result.bigImageSize = CGSizeMake([[rawResult objectForKey:@"width_m"] floatValue],
+                                         [[rawResult objectForKey:@"height_m"] floatValue]);
+
         [self.objects addObject:result];
     }
     

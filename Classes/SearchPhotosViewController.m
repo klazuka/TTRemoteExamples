@@ -12,7 +12,7 @@
 {
     if ((self = [super init])) {
         self.title = @"Photo example";
-        photoSource = [[SearchResultsPhotoSource alloc] initWithModel:[[[YahooSearchResultsModel alloc] init] autorelease]];
+        photoSource = [[SearchResultsPhotoSource alloc] initWithModel:CreateSearchModelWithCurrentSettings()];
     }
     return self;
 }
