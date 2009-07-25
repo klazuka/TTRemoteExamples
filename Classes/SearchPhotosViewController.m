@@ -3,7 +3,7 @@
 //
 
 #import "SearchPhotosViewController.h"
-#import "PhotoSource.h"
+#import "SearchResultsPhotoSource.h"
 #import "YahooSearchResultsModel.h"
 
 @implementation SearchPhotosViewController
@@ -12,7 +12,7 @@
 {
     if ((self = [super init])) {
         self.title = @"Photo example";
-        photoSource = [[PhotoSource alloc] initWithModel:[[[YahooSearchResultsModel alloc] init] autorelease]];
+        photoSource = [[SearchResultsPhotoSource alloc] initWithModel:[[[YahooSearchResultsModel alloc] init] autorelease]];
     }
     return self;
 }

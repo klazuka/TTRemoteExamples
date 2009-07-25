@@ -1,17 +1,17 @@
 //
-//  PhotoSource.m
+//  SearchResultsPhotoSource.m
 //  Three20RemotePhotos
 //
 //  Created by Keith Lazuka on 5/29/09.
 //  
 //
 
-#import "PhotoSource.h"
+#import "SearchResultsPhotoSource.h"
 #import "YahooSearchResultsModel.h"
 #import "SearchResult.h"
 
-// NOTE: I have disabled compiler warnings on this source file (PhotoSource.m)
-//       because the compiler keeps complaining that PhotoSource does not
+// NOTE: I have disabled compiler warnings on this source file (SearchResultsPhotoSource.m)
+//       because the compiler keeps complaining that SearchResultsPhotoSource does not
 //       conform to the TTPhotoSource protocol because the compiler isn't
 //       smart enough to know about the Objective-C runtime forwarding.
 
@@ -32,7 +32,7 @@
 // -----------------------------------------------------------------------
 #pragma mark -
 
-@implementation PhotoSource
+@implementation SearchResultsPhotoSource
 
 @synthesize title = albumTitle;
 

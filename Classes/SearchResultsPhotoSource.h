@@ -1,5 +1,5 @@
 //
-//  PhotoSource.h
+//  SearchResultsPhotoSource.h
 //  Three20RemotePhotos
 //
 //  Created by Keith Lazuka on 5/29/09.
@@ -11,8 +11,8 @@
 @class YahooSearchResultsModel;
 
 /*
- *      PhotoSource
- *      -----------
+ *      SearchResultsPhotoSource
+ *      ------------------------
  *
  *  Responsibilities:
  *      - Load photos from the Internet (this responsibility is delegated to
@@ -27,7 +27,7 @@
  *  interface to the underlying model object.
  *
  */
-@interface PhotoSource : NSObject <TTPhotoSource>
+@interface SearchResultsPhotoSource : NSObject <TTPhotoSource>
 {
     YahooSearchResultsModel *model;
     

@@ -4,7 +4,7 @@
 
 #import "Three20/Three20.h"
 
-@class PhotoSource;
+@class SearchResultsPhotoSource;
 
 /*
  *      SearchPhotosViewController
@@ -19,7 +19,7 @@
 @interface SearchPhotosViewController : TTViewController
 {
     UITextField *queryField;
-    PhotoSource *photoSource;
+    SearchResultsPhotoSource *photoSource;
 }
 
 @end

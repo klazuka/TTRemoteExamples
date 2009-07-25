@@ -26,9 +26,9 @@
 		539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146C1018E50D0085BC76 /* DDXMLElementAdditions.m */; };
 		539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A146E1018E50D0085BC76 /* DDXMLNode.m */; };
 		539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A14711018E50D0085BC76 /* NSStringAdditions.m */; };
-		539A161C1019BC0E0085BC76 /* PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A16171019BC0E0085BC76 /* PhotoSource.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		539A18B5101A0C950085BC76 /* SearchPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */; };
 		539A18B8101A0C9F0085BC76 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A18B7101A0C9F0085BC76 /* SearchTableViewController.m */; };
+		539A1BE0101B1BF40085BC76 /* SearchResultsPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 539A1BDF101B1BF40085BC76 /* SearchResultsPhotoSource.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		539C36E30FD6A99D00117201 /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */; };
 		539C36E40FD6A99D00117201 /* GTMNSDictionary+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */; };
 		53CDB8D01018B56800AE0B64 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CDB8CF1018B56800AE0B64 /* SearchResult.m */; };
@@ -95,14 +95,14 @@
 		539A146F1018E50D0085BC76 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		539A14701018E50D0085BC76 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		539A14711018E50D0085BC76 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
-		539A16101019BC0E0085BC76 /* PhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSource.h; sourceTree = "<group>"; };
-		539A16171019BC0E0085BC76 /* PhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSource.m; sourceTree = "<group>"; };
 		539A1895101A07670085BC76 /* TTRemoteExamples_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTRemoteExamples_Prefix.pch; sourceTree = "<group>"; };
 		539A1896101A07780085BC76 /* TTRemoteExamples-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TTRemoteExamples-Info.plist"; sourceTree = "<group>"; };
 		539A18B3101A0C950085BC76 /* SearchPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPhotosViewController.h; sourceTree = "<group>"; };
 		539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPhotosViewController.m; sourceTree = "<group>"; };
 		539A18B6101A0C9F0085BC76 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		539A18B7101A0C9F0085BC76 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
+		539A1BDE101B1BF40085BC76 /* SearchResultsPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsPhotoSource.h; sourceTree = "<group>"; };
+		539A1BDF101B1BF40085BC76 /* SearchResultsPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsPhotoSource.m; sourceTree = "<group>"; };
 		539C36DE0FD6A99D00117201 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		539C36DF0FD6A99D00117201 /* GTMNSString+URLArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+URLArguments.h"; sourceTree = "<group>"; };
 		539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+URLArguments.m"; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 			children = (
 				539A18B3101A0C950085BC76 /* SearchPhotosViewController.h */,
 				539A18B4101A0C950085BC76 /* SearchPhotosViewController.m */,
-				539A16101019BC0E0085BC76 /* PhotoSource.h */,
-				539A16171019BC0E0085BC76 /* PhotoSource.m */,
+				539A1BDE101B1BF40085BC76 /* SearchResultsPhotoSource.h */,
+				539A1BDF101B1BF40085BC76 /* SearchResultsPhotoSource.m */,
 			);
 			name = "Photo Stuff";
 			sourceTree = "<group>";
@@ -413,9 +413,9 @@
 				539A14741018E50D0085BC76 /* DDXMLElementAdditions.m in Sources */,
 				539A14751018E50D0085BC76 /* DDXMLNode.m in Sources */,
 				539A14761018E50D0085BC76 /* NSStringAdditions.m in Sources */,
-				539A161C1019BC0E0085BC76 /* PhotoSource.m in Sources */,
 				539A18B5101A0C950085BC76 /* SearchPhotosViewController.m in Sources */,
 				539A18B8101A0C9F0085BC76 /* SearchTableViewController.m in Sources */,
+				539A1BE0101B1BF40085BC76 /* SearchResultsPhotoSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
