@@ -29,6 +29,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
             default:
                 [NSException raise:@"SearchResponseFormat unknown!" format:nil];
         }
+        recordOffset = 1; // Yahoo's API offset is 1-based.
     }
     return self;
 }
@@ -79,7 +80,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
     [super reset];
     [searchTerms release];
     searchTerms = nil;
-    recordOffset = 0;
+    recordOffset = 1;
     [[responseProcessor objects] removeAllObjects];
 }
 
@@ -88,7 +89,7 @@ const static NSUInteger kYahooBatchSize = 16;   // The number of results to pull
     if (![theSearchTerms isEqualToString:searchTerms]) {
         [searchTerms release];
         searchTerms = [theSearchTerms retain];
-        recordOffset = 0;
+        recordOffset = 1;
     }
 }
 
