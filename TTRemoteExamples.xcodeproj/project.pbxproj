@@ -36,6 +36,7 @@
 		539C36E30FD6A99D00117201 /* GTMNSString+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E00FD6A99D00117201 /* GTMNSString+URLArguments.m */; };
 		539C36E40FD6A99D00117201 /* GTMNSDictionary+URLArguments.m in Sources */ = {isa = PBXBuildFile; fileRef = 539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */; };
 		53B8BD2610C430940025C559 /* ForwardingAdapters.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B8BD2510C430940025C559 /* ForwardingAdapters.m */; };
+		53B8BDA210C449FF0025C559 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B8BDA110C449FF0025C559 /* libxml2.dylib */; };
 		53CDB8D01018B56800AE0B64 /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CDB8CF1018B56800AE0B64 /* SearchResult.m */; };
 		53CDB8D41018B83F00AE0B64 /* YahooSearchResultsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CDB8D31018B83F00AE0B64 /* YahooSearchResultsModel.m */; };
 		53CDB8D71018C08700AE0B64 /* SearchResultsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CDB8D61018C08700AE0B64 /* SearchResultsTableDataSource.m */; };
@@ -123,6 +124,7 @@
 		539C36E20FD6A99D00117201 /* GTMNSDictionary+URLArguments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSDictionary+URLArguments.m"; sourceTree = "<group>"; };
 		53B8BD2410C430940025C559 /* ForwardingAdapters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardingAdapters.h; sourceTree = "<group>"; };
 		53B8BD2510C430940025C559 /* ForwardingAdapters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardingAdapters.m; sourceTree = "<group>"; };
+		53B8BDA110C449FF0025C559 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		53CDB8CE1018B56800AE0B64 /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
 		53CDB8CF1018B56800AE0B64 /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
 		53CDB8D21018B83F00AE0B64 /* YahooSearchResultsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YahooSearchResultsModel.h; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				531976AB0FC8303E00657A15 /* QuartzCore.framework in Frameworks */,
 				53CDB8E51018C62D00AE0B64 /* libThree20.a in Frameworks */,
+				53B8BDA210C449FF0025C559 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +218,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				53B8BDA110C449FF0025C559 /* libxml2.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -489,6 +493,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TTRemoteExamples_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					$SDKROOT/usr/include/libxml2,
+					three20/src,
+					Support,
+				);
 				INFOPLIST_FILE = "TTRemoteExamples-Info.plist";
 				PRODUCT_NAME = TTRemote;
 			};
