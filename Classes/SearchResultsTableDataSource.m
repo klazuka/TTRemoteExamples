@@ -29,4 +29,17 @@
     TTLOG(@"Added %lu search result objects", (unsigned long)[self.items count]);
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+#pragma mark TTTableViewDataSource protocol
+
+- (UIImage*)imageForEmpty
+{
+	return [UIImage imageNamed:@"Three20.bundle/images/empty.png"];
+}
+
+- (UIImage*)imageForError:(NSError*)error
+{
+    return [UIImage imageNamed:@"Three20.bundle/images/error.png"];
+}
+
 @end
