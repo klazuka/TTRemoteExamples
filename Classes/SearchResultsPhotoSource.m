@@ -6,7 +6,7 @@
 //
 
 #import "SearchResultsPhotoSource.h"
-#import "YahooSearchResultsModel.h"
+#import "SearchResultsModel.h"
 #import "SearchResult.h"
 
 // NOTE: I have disabled compiler warnings on this source file (SearchResultsPhotoSource.m)
@@ -35,7 +35,7 @@
 
 @synthesize title = albumTitle;
 
-- (id)initWithModel:(YahooSearchResultsModel *)theModel
+- (id)initWithModel:(id <SearchResultsModel>)theModel
 {
     if ((self = [super init])) {
         albumTitle = @"Photos";
@@ -169,3 +169,4 @@
 }
 
 @end
+

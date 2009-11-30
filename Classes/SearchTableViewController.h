@@ -9,7 +9,7 @@
  *      ------------------------
  *
  *  This view controller manages a UITableView that will
- *  display Yahoo image search results. 
+ *  display Yahoo or Flickr image search results. 
  *
  */
 @interface SearchTableViewController : TTTableViewController <UISearchBarDelegate>

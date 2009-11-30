@@ -4,7 +4,10 @@
 
 #import "SearchPhotosViewController.h"
 #import "SearchResultsPhotoSource.h"
+#import "ForwardingAdapters.h"
 #import "SearchResultsModel.h"
+
+// --------------------------------------------------------------------------------
 
 @implementation SearchPhotosViewController
 
@@ -34,14 +37,7 @@
     [photoSource load:TTURLRequestCachePolicyDefault more:NO];
     
     // Display the updated photoSource.
-    TTThumbsViewController *thumbs = [[TTThumbsViewController alloc] init];
-    [thumbs setPhotoSource:photoSource];
-    // Ugly hack: the TTModel system does not expect that your TTPhotoSource implementation
-    // is actually forwarding to another object in order to conform to the TTModel aspect
-    // of the TTPhotoSource protocol. So I have to ensure that the TTModelViewController's
-    // notion of what its model is matches the object that it will receive 
-    // via the TTModelDelegate messages.
-    thumbs.model = [photoSource underlyingModel]; 
+    TTThumbsViewController *thumbs = [[MyThumbsViewController alloc] initForPhotoSource:photoSource];
     [self.navigationController pushViewController:thumbs animated:YES];
     [thumbs release];
 }
